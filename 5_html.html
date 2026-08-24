@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 5: Pohon Keluarga | Bimbingan dan Konseling Kelas VII</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- html2pdf.js untuk fitur Unduh PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-input: rgba(255, 255, 255, 0.05);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-gold: rgba(212, 175, 55, 0.2);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .luxury-font { font-family: 'Playfair Display', serif; }
+
+        .container { max-width: 950px; margin: 0 auto; padding: 2rem; }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-gold);
+            margin-bottom: 3rem;
+        }
+
+        .nav-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover { color: var(--gold-light); transform: translateX(-3px); }
+        .nav-link.next:hover { transform: translateX(3px); }
+
+        /* Hero / Header Section */
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-gold);
+        }
+
+        .chapter-header h1 {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .chapter-header p {
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        .author-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-gold);
+            padding-top: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .author-meta strong { color: var(--gold); }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title span {
+            background: var(--gold);
+            color: var(--bg-dark);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 { color: var(--gold-light); margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        .example-box h4 { color: var(--success); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* Genogram Visual */
+        .genogram-visual {
+            background: rgba(212, 175, 55, 0.03);
+            border: 1px dashed var(--border-gold);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .genogram-symbol {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-gold);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .symbol-male { color: #60a5fa; }
+        .symbol-female { color: #f472b6; }
+
+        /* Tables */
+        .luxury-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .luxury-table th, .luxury-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-gold);
+            text-align: left;
+        }
+        .luxury-table th {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .luxury-table tr:hover { background: rgba(255, 255, 255, 0.02); }
+        .luxury-table td { color: var(--text-secondary); }
+
+        /* References */
+        .reference-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reference-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .reference-list li::before {
+            content: '📚';
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .islamic-quote {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .islamic-quote .arabic {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-family: 'Traditional Arabic', serif;
+        }
+
+        .islamic-quote .translation {
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form & Quiz Styles */
+        .quiz-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .quiz-header { text-align: center; margin-bottom: 2.5rem; }
+        .quiz-header h2 { color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: var(--gold-light); margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-gold); }
+        .question-block:last-child { border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); font-size: 1.05rem; }
+        .question-points { float: right; background: var(--gold); color: var(--bg-dark); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
+
+        .options-list { list-style: none; }
+        .options-list li { margin-bottom: 0.75rem; }
+        .option-label {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem;
+            background: var(--bg-input); border: 1px solid transparent; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .option-label:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+        input[type="radio"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+
+        /* Results Section */
+        .results-panel {
+            display: none; background: rgba(16, 185, 129, 0.05); border: 1px solid var(--success);
+            border-radius: 12px; padding: 2rem; margin-top: 2rem; text-align: center;
+        }
+        .results-panel.show { display: block; animation: fadeInUp 0.5s ease; }
+
+        .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .score-box { background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-gold); }
+        .score-box h4 { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+        .score-box .value { font-size: 2rem; font-weight: 700; color: var(--gold); font-family: 'Playfair Display', serif; }
+
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .btn {
+            padding: 0.875rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; border: none; font-size: 0.95rem; display: inline-flex;
+            align-items: center; gap: 0.5rem; text-decoration: none;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%); color: var(--bg-dark); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .btn-secondary { background: var(--bg-input); color: var(--text-primary); border: 1px solid var(--border-gold); }
+        .btn-secondary:hover { background: rgba(212, 175, 55, 0.1); border-color: var(--gold); }
+        .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+        .btn-outline:hover { background: var(--gold); color: var(--bg-dark); }
+
+        footer { text-align: center; padding: 3rem 0; margin-top: 4rem; border-top: 1px solid var(--border-gold); color: var(--text-secondary); font-size: 0.9rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .form-row, .score-grid { grid-template-columns: 1fr; }
+            .chapter-header h1 { font-size: 1.8rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .luxury-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <a href="4.html" class="nav-link">← Pertemuan 4: Tata Tertib</a>
+            <a href="6.html" class="nav-link next">Pertemuan 6: Pohon Keluarga (Lanjutan) →</a>
+        </nav>
+
+        <!-- Chapter Header -->
+        <header class="chapter-header">
+            <div class="chapter-badge">PERTEMUAN KE-5</div>
+            <h1>Pohon Keluarga (Genogram)</h1>
+            <p>Menelusuri akar silsilah keluarga untuk memahami jati diri, nilai-nilai yang diwariskan, dan pola hubungan yang membentuk kepribadian kita hari ini.</p>
+            
+            <div class="author-meta">
+                <div>
+                    <strong>Tika Ramadhani S.Pd</strong><br>
+                    Guru Bimbingan dan Konseling<br>
+                    <span style="font-size: 0.8rem;">✉️ tikaramadhani41@gmail.com</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <main>
+            <section class="content-section">
+                <h3 class="section-title"><span>A</span> Mengenal Pohon Keluarga</h3>
+                <p>Pernahkah kamu bertanya-tanya: <em>"Dari mana asalku?"</em>, <em>"Siapa saja yang menjadi bagian dari keluargaku?"</em>, atau <em>"Apa yang diwariskan nenek-kakekku kepada orang tuaku, dan kemudian kepadaku?"</em> Pertanyaan-pertanyaan inilah yang menjadi dasar dari pembuatan <strong>Pohon Keluarga</strong>.</p>
+                
+                <div class="highlight-box">
+                    <h4>📌 DEFINISI INTI</h4>
+                    <p><strong>Pohon Keluarga</strong> (atau dalam istilah profesional disebut <strong>Genogram</strong>) adalah gambaran visual berupa bagan atau diagram yang menampilkan silsilah keluarga minimal tiga generasi, lengkap dengan informasi tentang hubungan, peristiwa penting, dan pola-pola yang terjadi di dalamnya.</p>
+                </div>
+                
+                <p>Berbeda dengan silsilah tradisional yang hanya mencatat nama dan garis keturunan, genogram dalam Bimbingan dan Konseling digunakan sebagai alat untuk <strong>memahami dinamika keluarga</strong>—bagaimana hubungan antar anggota keluarga, pola pengasuhan, tradisi, bahkan masalah yang mungkin terulang dari generasi ke generasi. Dengan memahami pohon keluarga, siswa dapat lebih mengenal dirinya sendiri secara utuh.</p>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>B</span> Landasan Teori Pendukung</h3>
+                <p>Pembuatan pohon keluarga dalam BK tidak dilakukan secara sembarangan, melainkan berlandaskan pada teori-teori psikologi keluarga yang kuat:</p>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 1rem;">
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">1. Teori Sistem Keluarga Bowen (Murray Bowen, 1978):</strong> Bowen memandang keluarga sebagai sebuah <em>sistem emosional</em> di mana setiap anggota saling mempengaruhi. Perubahan pada satu anggota akan berdampak pada anggota lainnya. Genogram membantu mengidentifikasi <em>pola hubungan</em> (seperti kedekatan, konflik, atau jarak emosional) yang terulang lintas generasi.</li>
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">2. Teori Kelekatan / Attachment Theory (John Bowlby, 1969):</strong> Bowlby menjelaskan bahwa hubungan awal antara anak dan pengasuh (biasanya orang tua) membentuk <em>pola kelekatan</em> yang mempengaruhi cara individu menjalin hubungan di masa dewasa. Genogram dapat mengungkap pola pengasuhan yang diterima siswa dari kecil.</li>
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">3. Teori Perkembangan Erikson (Tahap Identitas):</strong> Seperti telah dipelajari pada Pertemuan 1, siswa kelas VII berada pada tahap <em>Identity vs. Role Confusion</em>. Memahami akar keluarga membantu siswa menjawab pertanyaan fundamental: <em>"Siapa saya?"</em> dan <em>"Nilai apa yang saya bawa dari keluarga?"</em></li>
+                    <li><strong style="color: var(--gold);">4. Konsep Multigenerational Transmission Process (Bowen):</strong> Pola perilaku, nilai, bahkan masalah emosional dapat "diturunkan" dari satu generasi ke generasi berikutnya. Dengan menyadarinya melalui genogram, siswa dapat memilih untuk melanjutkan tradisi positif dan memutus rantai pola negatif.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>C</span> Struktur Keluarga di Indonesia</h3>
+                <p>Sebelum membuat pohon keluarga, penting untuk memahami berbagai bentuk struktur keluarga yang ada di masyarakat Indonesia:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Jenis Keluarga</th>
+                            <th>Definisi</th>
+                            <th>Contoh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Keluarga Nuklir</strong></td>
+                            <td>Terdiri dari ayah, ibu, dan anak yang tinggal dalam satu rumah tangga.</td>
+                            <td>Pak Ahmad, Bu Fatimah, dan dua orang anak mereka tinggal bersama di satu rumah.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Keluarga Diperluas (Extended)</strong></td>
+                            <td>Keluarga nuklir ditambah anggota keluarga lain seperti kakek, nenek, paman, bibi, atau sepupu yang tinggal bersama.</td>
+                            <td>Budi tinggal bersama ayah, ibu, adik, serta nenek dari pihak ibu.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Keluarga Tunggal (Single Parent)</strong></td>
+                            <td>Keluarga yang hanya diasuh oleh satu orang tua (ayah atau ibu saja), bisa karena perceraian, kematian, atau pilihan.</td>
+                            <td>Rina tinggal bersama ibunya saja setelah orang tuanya bercerai.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Keluarga Sambung (Blended/Step)</strong></td>
+                            <td>Keluarga yang terbentuk dari pernikahan ulang salah satu atau kedua orang tua, membawa anak dari pernikahan sebelumnya.</td>
+                            <td>Ayah Andi menikah lagi dengan Bu Sari yang sudah memiliki anak dari pernikahan sebelumnya.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Keluarga Angkat / Asuh</strong></td>
+                            <td>Keluarga yang mengasuh anak yang bukan anak kandung secara legal atau sukarela.</td>
+                            <td>Pak Hasan dan Bu Mariam mengasuh seorang anak yatim sebagai anak sendiri.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Catatan Penting</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Tidak ada struktur keluarga yang "lebih baik" dari yang lain. Setiap bentuk keluarga memiliki kekuatan dan tantangannya masing-masing. Yang terpenting adalah adanya <strong>cinta, kasih sayang, dan dukungan</strong> antar anggota keluarga, apa pun bentuknya.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>D</span> Simbol-Simbol dalam Genogram</h3>
+                <p>Genogram menggunakan simbol-simbol standar untuk menggambarkan anggota keluarga dan hubungan di antara mereka. Berikut adalah simbol-simbol dasar yang perlu kamu ketahui:</p>
+                
+                <div class="genogram-visual">
+                    <h4 style="color: var(--gold); margin-bottom: 1rem;">📐 Simbol Anggota Keluarga</h4>
+                    <span class="genogram-symbol symbol-male">□ Kotak = Laki-laki</span>
+                    <span class="genogram-symbol symbol-female">○ Lingkaran = Perempuan</span>
+                    <span class="genogram-symbol">✕ di dalam simbol = Sudah meninggal</span>
+                    <span class="genogram-symbol">▣ Kotak berarsir = Diri sendiri (kamu)</span>
+                </div>
+
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">Jenis Garis Hubungan</th>
+                            <th>Makna</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Garis tunggal horizontal (──)</strong></td>
+                            <td>Hubungan pernikahan.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Dua garis horizontal (══)</strong></td>
+                            <td>Pernikahan yang sangat dekat/harmonis.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Garis putus-putus (- - -)</strong></td>
+                            <td>Hubungan pertunangan atau tinggal bersama tanpa nikah.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Garis zigzag (\/\/\/)</strong></td>
+                            <td>Hubungan konflik atau bermasalah.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Garis vertikal turun (│)</strong></td>
+                            <td>Hubungan orang tua dengan anak.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Garis tunggal vertikal dekat</strong></td>
+                            <td>Hubungan sangat dekat (close).</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Garis terputus jauh</strong></td>
+                            <td>Hubungan renggang atau jauh (distant).</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Garis terputus putus dekat</strong></td>
+                            <td>Hubungan sangat dekat tapi konflik (close-conflictual).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>E</span> Tujuan dan Manfaat Membuat Pohon Keluarga</h3>
+                <p>Mengapa siswa kelas VII perlu membuat pohon keluarga dalam layanan BK? Berikut adalah tujuan dan manfaatnya:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Tujuan/Manfaat</th>
+                            <th>Penjelasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">1. Memahami Identitas Diri</strong></td>
+                            <td>Dengan mengetahui asal-usul, siswa dapat menjawab pertanyaan "Siapa saya?" dan membangun rasa bangga terhadap latar belakangnya.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">2. Mengenal Nilai yang Diwariskan</strong></td>
+                            <td>Setiap keluarga memiliki nilai, tradisi, dan prinsip yang diturunkan. Memahaminya membantu siswa memilih nilai mana yang ingin diteruskan.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">3. Memahami Pola Hubungan</strong></td>
+                            <td>Genogram membantu siswa melihat pola komunikasi dan hubungan dalam keluarganya—mana yang sehat dan mana yang perlu diperbaiki.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">4. Menghargai Sejarah Keluarga</strong></td>
+                            <td>Mengenali perjuangan dan pencapaian generasi sebelum kita menumbuhkan rasa syukur dan hormat.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">5. Memperkuat Silaturahmi</strong></td>
+                            <td>Dalam budaya Minangkabau (termasuk Agam), silaturahmi dengan keluarga besar adalah nilai penting. Pohon keluarga menjadi alat untuk menjaga hubungan ini.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">6. Deteksi Dini Masalah</strong></td>
+                            <td>Guru BK dapat menggunakan genogram untuk mengidentifikasi pola masalah (seperti perceraian berulang, konflik) yang mungkin mempengaruhi siswa.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>F</span> Langkah-Langkah Membuat Pohon Keluarga</h3>
+                <p>Membuat pohon keluarga adalah proses yang menyenangkan dan bermakna. Berikut langkah-langkahnya:</p>
+                
+                <div class="highlight-box">
+                    <h4>Langkah 1: Kumpulkan Informasi</h4>
+                    <p>Wawancarai orang tua, kakek, nenek, atau anggota keluarga lain. Tanyakan nama lengkap, tanggal lahir, pekerjaan, hobi, dan cerita-cerita penting tentang mereka.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Langkah 2: Tentukan Ruang Lingkup</h4>
+                    <p>Putuskan berapa generasi yang akan kamu masukkan. Untuk tugas sekolah, minimal <strong>tiga generasi</strong> sudah cukup: (1) kakek-nenek, (2) orang tua, (3) kamu dan saudara-saudaramu.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Langkah 3: Gambar Struktur Dasar</h4>
+                    <p>Mulai dari generasi paling atas (kakek-nenek) di bagian atas kertas, lalu turun ke orang tua, dan terakhir kamu dan saudara-saudaramu di bagian bawah. Gunakan simbol standar genogram.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Langkah 4: Tambahkan Informasi Detail</h4>
+                    <p>Tuliskan nama, tahun lahir, pekerjaan, dan informasi penting lainnya di dekat setiap simbol. Tambahkan garis hubungan sesuai kedekatan atau konflik.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Langkah 5: Refleksi dan Makna</h4>
+                    <p>Setelah selesai, renungkan: "Apa yang saya pelajari tentang keluarga saya?", "Nilai apa yang ingin saya teruskan?", "Pola apa yang ingin saya ubah?"</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Studi Kasus Mini: Kisah Sari</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Sari adalah siswa kelas VII yang pendiam dan sering merasa kesepian. Ketika diminta membuat pohon keluarga dalam sesi BK, ia mewawancarai neneknya dan menemukan bahwa neneknya adalah seorang guru yang sangat dihormati di kampungnya, dan ibunya adalah perempuan tangguh yang membesarkan Sari sendirian setelah ayahnya meninggal. Sari merasa <strong>terharu dan bangga</strong>—ia menyadari bahwa ketangguhan ibunya mengalir dalam darahnya. Sejak saat itu, Sari menjadi lebih percaya diri dan termotivasi untuk melanjutkan semangat perempuan-perempuan kuat dalam keluarganya. <strong>Pelajaran:</strong> Pohon keluarga bukan sekadar tugas, tetapi perjalanan menemukan kekuatan dalam akar kita.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>G</span> Hal-Hal yang Perlu Diperhatikan</h3>
+                <p>Membuat pohon keluarga bisa menjadi pengalaman emosional, terutama bagi siswa yang berasal dari keluarga dengan dinamika kompleks. Berikut adalah beberapa hal yang perlu diperhatikan:</p>
+                
+                <div class="highlight-box">
+                    <h4>🔒 Jaga Kerahasiaan</h4>
+                    <p>Informasi tentang keluarga adalah hal pribadi. Guru BK wajib menjaga kerahasiaan genogram siswa dan tidak membagikannya kepada pihak lain tanpa izin.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>💝 Pendekatan dengan Empati</h4>
+                    <p>Tidak semua siswa memiliki keluarga yang "ideal". Guru BK harus sensitif terhadap kondisi siswa (misalnya yatim, piatu, keluarga bercerai, atau keluarga dengan masalah berat) dan memberikan ruang aman untuk berekspresi.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🌱 Fokus pada Kekuatan</h4>
+                    <p>Tujuan utama bukan untuk mengungkit masalah, tetapi untuk <strong>mengidentifikasi kekuatan dan ketahanan</strong> yang dimiliki keluarga. Setiap keluarga, apa pun kondisinya, pasti memiliki kekuatan yang bisa dijadikan modal.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🤝 Libatkan Keluarga (Jika Memungkinkan)</h4>
+                    <p>Proses membuat genogram bisa menjadi momen berharga untuk mempererat hubungan dengan orang tua atau kakek-nenek melalui wawancara. Ini juga memperkuat silaturahmi.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>H</span> Referensi Pendukung</h3>
+                <p>Materi ini disusun berdasarkan landasan akademis yang kredibel:</p>
+                <ul class="reference-list">
+                    <li>Bowen, M. (1978). <em>Family Therapy in Clinical Practice</em>. New York: Jason Aronson.</li>
+                    <li>Bowlby, J. (1969). <em>Attachment and Loss: Vol. 1. Attachment</em>. New York: Basic Books.</li>
+                    <li>McGoldrick, M., Gerson, R., & Petry, S. (2008). <em>Genograms: Assessment and Intervention</em> (3rd ed.). New York: W.W. Norton & Company.</li>
+                    <li>Nielsen, J. (2014). <em>The Genogram Journey: Reconnecting with Your Family</em>. New York: Springer Publishing.</li>
+                    <li>Prayitno & Erman Amti. (2004). <em>Dasar-Dasar Bimbingan dan Konseling</em>. Jakarta: Rineka Cipta.</li>
+                    <li>Modul Pelatihan Guru Implementasi Kurikulum Merdeka: Bimbingan dan Konseling. Kemendikbudristek, 2022.</li>
+                </ul>
+            </section>
+
+            <!-- Islamic Quote -->
+            <div class="islamic-quote">
+                <div class="arabic">يَا أَيُّهَا النَّاسُ اتَّقُوا رَبَّكُمُ الَّذِي خَلَقَكُم مِّن نَّفْسٍ وَاحِدَةٍ وَخَلَقَ مِنْهَا زَوْجَهَا وَبَثَّ مِنْهُمَا رِجَالًا كَثِيرًا وَنِسَاءً</div>
+                <p class="translation">"Wahai manusia! Bertakwalah kepada Tuhanmu yang telah menciptakan kamu dari diri yang satu (Adam), dan Dia menciptakan istrinya (Hawa) dari dirinya (Adam); dan dari keduanya Allah memperkembangbiakkan laki-laki dan perempuan yang banyak."</p>
+                <p style="color: var(--gold); margin-top: 1rem; font-weight: 600;">— QS. An-Nisa [4]: 1</p>
+            </div>
+
+            <!-- Interactive Formative Test -->
+            <div class="quiz-container" id="quiz-section">
+                <div class="quiz-header">
+                    <h2>📝 Uji Formatif Pertemuan 5</h2>
+                    <p style="color: var(--text-secondary);">Pohon Keluarga (Genogram) | Skor Maksimal: 200</p>
+                </div>
+
+                <form id="formatifForm">
+                    <!-- Identitas -->
+                    <div class="content-section" style="margin-bottom: 2rem; border-color: var(--gold);">
+                        <h3 style="color: var(--gold); margin-bottom: 1.5rem; font-family: 'Inter', sans-serif; font-size: 1.1rem;">📋 Identitas Siswa</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Lengkap *</label>
+                                <input type="text" id="nama" class="form-control" required placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label>No. Absen / NIS *</label>
+                                <input type="text" id="nis" class="form-control" required placeholder="Contoh: 05 / 12345">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tanggal Ujian *</label>
+                                <input type="date" id="tanggal" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Kelas *</label>
+                                <select id="kelas" class="form-control" required>
+                                    <option value="">Pilih Kelas</option>
+                                    <option value="VII-A">VII-A</option>
+                                    <option value="VII-B">VII-B</option>
+                                    <option value="VII-C">VII-C</option>
+                                    <option value="VII-D">VII-D</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bagian A: Pilihan Ganda -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">📋 Bagian A: Pilihan Ganda (10 Soal x 10 Poin)</h3>
+                    
+                    <div class="question-block">
+                        <p class="question-text">1. Apa istilah profesional untuk "pohon keluarga" yang digunakan dalam Bimbingan dan Konseling? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q1" value="A"> A. Ecomap</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="B"> B. Genogram</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="C"> C. Sosiogram</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="D"> D. Autobiografi</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Teori Sistem Keluarga yang menjadi landasan utama penggunaan genogram dalam BK dikemukakan oleh... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q2" value="A"> A. Murray Bowen</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="B"> B. Sigmund Freud</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="C"> C. Carl Rogers</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="D"> D. B.F. Skinner</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Keluarga yang terdiri dari ayah, ibu, dan anak yang tinggal dalam satu rumah tangga disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q3" value="A"> A. Keluarga diperluas (extended family)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="B"> B. Keluarga sambung (blended family)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="C"> C. Keluarga nuklir (nuclear family)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="D"> D. Keluarga tunggal (single parent)</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Dalam genogram, simbol kotak (□) digunakan untuk menggambarkan... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q4" value="A"> A. Perempuan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="B"> B. Laki-laki</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="C"> C. Anak yatim</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="D"> D. Orang yang sudah meninggal</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Teori Kelekatan (Attachment Theory) yang menjelaskan pentingnya hubungan awal anak dengan pengasuh dikemukakan oleh... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q5" value="A"> A. Erik Erikson</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="B"> B. John Bowlby</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="C"> C. Abraham Maslow</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="D"> D. Kurt Lewin</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">6. Keluarga yang terdiri dari orang tua, anak, serta kakek/nenek yang tinggal bersama disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q6" value="A"> A. Keluarga nuklir</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="B"> B. Keluarga tunggal</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="C"> C. Keluarga diperluas (extended family)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="D"> D. Keluarga angkat</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">7. Dalam genogram, garis zigzag (\/\/\/) digunakan untuk menggambarkan... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q7" value="A"> A. Hubungan pernikahan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="B"> B. Hubungan konflik atau bermasalah</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="C"> C. Hubungan sangat dekat</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="D"> D. Hubungan orang tua-anak</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">8. Untuk tugas sekolah di kelas VII, minimal berapa generasi yang sebaiknya dimasukkan dalam pohon keluarga? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q8" value="A"> A. 3 generasi (kakek-nenek, orang tua, anak)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="B"> B. 1 generasi (hanya diri sendiri)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="C"> C. 5 generasi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="D"> D. Tidak ada ketentuan</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">9. Salah satu manfaat utama membuat pohon keluarga bagi siswa kelas VII adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q9" value="A"> A. Menambah nilai rapor</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="B"> B. Memahami identitas diri dan nilai yang diwariskan keluarga</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="C"> C. Mendapat hadiah dari guru</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="D"> D. Menghafal nama semua sanak saudara</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">10. Pelajaran utama dari kisah Sari dalam studi kasus adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q10" value="A"> A. Pohon keluarga hanya tugas sekolah biasa</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="B"> B. Pohon keluarga adalah perjalanan menemukan kekuatan dalam akar keluarga kita</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="C"> C. Siswa tidak perlu mengenal keluarganya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="D"> D. Hanya keluarga besar yang penting untuk diketahui</label></li>
+                        </ul>
+                    </div>
+
+                    <!-- Bagian B: Essay -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">✍️ Bagian B: Essay (5 Soal x 20 Poin)</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">*Sistem akan melakukan estimasi skor berdasarkan kata kunci jawaban. Penilaian akhir tetap berada di tangan Guru.</p>
+
+                    <div class="question-block">
+                        <p class="question-text">1. Jelaskan apa yang dimaksud dengan pohon keluarga (genogram) dan mengapa alat ini penting dalam Bimbingan dan Konseling! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay1" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Sebutkan dan jelaskan 4 dari 5 jenis struktur keluarga yang ada di masyarakat! Berikan masing-masing satu contoh! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay2" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Jelaskan konsep Teori Sistem Keluarga Bowen! Bagaimana teori ini menjadi landasan penggunaan genogram dalam BK? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay3" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Sebutkan 4 simbol dasar dalam genogram dan maknanya! Jelaskan pula 3 jenis garis hubungan yang digunakan! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay4" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Jelaskan 5 langkah membuat pohon keluarga! Mengapa proses refleksi di akhir pembuatan genogram sangat penting? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay5" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="button" class="btn btn-primary" onclick="calculateScore()">📊 KIRIM JAWABAN & LIHAT HASIL</button>
+                    </div>
+                </form>
+
+                <!-- Results Panel -->
+                <div id="resultsPanel" class="results-panel">
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">✅ Uji Formatif Selesai!</h3>
+                    <p style="color: var(--text-secondary);">Berikut adalah ringkasan hasil penilaian Anda:</p>
+                    
+                    <div class="score-grid">
+                        <div class="score-box">
+                            <h4>Pilihan Ganda</h4>
+                            <div class="value" id="scorePG">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Essay (Estimasi)</h4>
+                            <div class="value" id="scoreEssay">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Skor Akhir</h4>
+                            <div class="value" id="scoreTotal">0</div>
+                        </div>
+                    </div>
+
+                    <div id="essayFeedback" style="text-align: left; background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border-gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 1rem;">💡 Catatan Penilaian Essay:</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Skor essay di atas adalah <strong>estimasi otomatis</strong> berdasarkan deteksi kata kunci dan panjang jawaban. Guru akan melakukan verifikasi ulang terhadap substansi jawaban Anda untuk mendapatkan nilai resmi.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="downloadPDF()">📄 Unduh PDF Lengkap</button>
+                        <button class="btn btn-secondary" onclick="downloadTXT()">📥 Unduh Skor (TXT)</button>
+                        <button class="btn btn-outline" onclick="sendEmail()">📧 Kirim ke Email Guru</button>
+                        <button class="btn btn-secondary" onclick="resetForm()">🔄 Mulai Ulang</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p class="luxury-font" style="font-size: 1.2rem; color: var(--gold); margin-bottom: 1rem;">MTsN 10 Agam</p>
+            <p>&copy; 2026 Tika Ramadhani S.Pd. Hak Cipta Dilindungi Undang-Undang.</p>
+            <p style="margin-top: 0.5rem;">Email: <a href="mailto:tikaramadhani41@gmail.com">tikaramadhani41@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const correctAnswers = {
+            q1: 'B', q2: 'A', q3: 'C', q4: 'B', q5: 'B',
+            q6: 'C', q7: 'B', q8: 'A', q9: 'B', q10: 'B'
+        };
+
+        // Kata kunci untuk estimasi penilaian essay
+        const essayKeywords = {
+            essay1: ['genogram', 'silsilah', 'keluarga', 'visual', 'diagram', 'generasi', 'hubungan', 'penting'],
+            essay2: ['nuklir', 'diperluas', 'tunggal', 'sambung', 'angkat', 'ayah', 'ibu', 'anak', 'nenek'],
+            essay3: ['bowen', 'sistem', 'emosional', 'pola', 'hubungan', 'generasi', 'pengaruh'],
+            essay4: ['kotak', 'lingkaran', 'laki-laki', 'perempuan', 'garis', 'pernikahan', 'konflik'],
+            essay5: ['kumpulkan', 'informasi', 'ruang lingkup', 'gambar', 'detail', 'refleksi', 'makna']
+        };
+
+        let finalScores = { pg: 0, essay: 0, total: 0 };
+
+        function calculateScore() {
+            // Validasi form
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            if (!nama || !nis) {
+                alert('Harap lengkapi Identitas Siswa (Nama dan NIS) terlebih dahulu!');
+                return;
+            }
+
+            // Hitung PG
+            let pgScore = 0;
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Hitung Estimasi Essay
+            let essayScore = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                const answer = document.getElementById(`essay${i}`).value.toLowerCase();
+                const keywords = essayKeywords[`essay${i}`];
+                let matchCount = 0;
+                
+                keywords.forEach(keyword => {
+                    if (answer.includes(keyword)) matchCount++;
+                });
+
+                if (answer.length > 15) {
+                    if (matchCount >= 2) essayScore += 20;
+                    else if (matchCount >= 1) essayScore += 10;
+                    else essayScore += 5;
+                }
+            }
+
+            finalScores = {
+                pg: pgScore,
+                essay: essayScore,
+                total: pgScore + essayScore
+            };
+
+            // Tampilkan hasil
+            document.getElementById('scorePG').textContent = finalScores.pg;
+            document.getElementById('scoreEssay').textContent = finalScores.essay;
+            document.getElementById('scoreTotal').textContent = finalScores.total;
+            
+            document.getElementById('resultsPanel').classList.add('show');
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('quiz-section');
+            const nama = document.getElementById('nama').value || 'Siswa';
+            const opt = {
+                margin: 10,
+                filename: `Uji_Formatif_P5_${nama.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, backgroundColor: '#0a0e17' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function downloadTXT() {
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            const kelas = document.getElementById('kelas').value;
+            const tanggal = document.getElementById('tanggal').value;
+            
+            const content = `=== HASIL UJI FORMATIF BK ===\n` +
+                           `Pertemuan 5: Pohon Keluarga (Genogram)\n` +
+                           `MTsN 10 Agam | Tahun Pelajaran 2026/2027\n\n` +
+                           `Nama: ${nama}\n` +
+                           `NIS: ${nis}\n` +
+                           `Kelas: ${kelas}\n` +
+                           `Tanggal: ${tanggal}\n\n` +
+                           `--- SKOR ---\n` +
+                           `Pilihan Ganda: ${finalScores.pg} / 100\n` +
+                           `Essay (Estimasi): ${finalScores.essay} / 100\n` +
+                           `TOTAL SKOR: ${finalScores.total} / 200\n\n` +
+                           `Catatan: Skor essay adalah estimasi otomatis. Verifikasi guru diperlukan.\n` +
+                           `Dikirim ke: tikaramadhani41@gmail.com`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Skor_BK_P5_${nama.replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function sendEmail() {
+            const nama = document.getElementById('nama').value;
+            const kelas = document.getElementById('kelas').value;
+            const total = finalScores.total;
+            
+            const subject = encodeURIComponent(`Hasil Uji Formatif BK Pertemuan 5 - ${nama} (${kelas})`);
+            const body = encodeURIComponent(`Yth. Ibu Tika Ramadhani S.Pd,\n\nBerikut adalah hasil uji formatif saya:\n\nNama: ${nama}\nKelas: ${kelas}\nSkor Total: ${total}/200\n(PG: ${finalScores.pg}, Essay: ${finalScores.essay})\n\nTerima kasih.\n\n*File detail telah diunduh secara terpisah.*`);
+            
+            window.location.href = `mailto:tikaramadhani41@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        function resetForm() {
+            if (confirm('Apakah Anda yakin ingin mengosongkan semua jawaban dan mulai ulang?')) {
+                document.getElementById('formatifForm').reset();
+                document.getElementById('resultsPanel').classList.remove('show');
+                finalScores = { pg: 0, essay: 0, total: 0 };
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

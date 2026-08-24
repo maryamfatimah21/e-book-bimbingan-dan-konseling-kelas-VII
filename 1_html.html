@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 1: Orientasi BK | Bimbingan dan Konseling Kelas VII</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- html2pdf.js untuk fitur Unduh PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-input: rgba(255, 255, 255, 0.05);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-gold: rgba(212, 175, 55, 0.2);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .luxury-font { font-family: 'Playfair Display', serif; }
+
+        .container { max-width: 950px; margin: 0 auto; padding: 2rem; }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-gold);
+            margin-bottom: 3rem;
+        }
+
+        .nav-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover { color: var(--gold-light); transform: translateX(-3px); }
+        .nav-link.next:hover { transform: translateX(3px); }
+
+        /* Hero / Header Section */
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-gold);
+        }
+
+        .chapter-header h1 {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .chapter-header p {
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        .author-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-gold);
+            padding-top: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .author-meta strong { color: var(--gold); }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title span {
+            background: var(--gold);
+            color: var(--bg-dark);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 { color: var(--gold-light); margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        .example-box h4 { color: var(--success); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* Tables */
+        .luxury-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .luxury-table th, .luxury-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-gold);
+            text-align: left;
+        }
+        .luxury-table th {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .luxury-table tr:hover { background: rgba(255, 255, 255, 0.02); }
+        .luxury-table td { color: var(--text-secondary); }
+
+        /* References */
+        .reference-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reference-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .reference-list li::before {
+            content: '📚';
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .islamic-quote {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .islamic-quote .arabic {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-family: 'Traditional Arabic', serif;
+        }
+
+        .islamic-quote .translation {
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form & Quiz Styles */
+        .quiz-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .quiz-header { text-align: center; margin-bottom: 2.5rem; }
+        .quiz-header h2 { color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: var(--gold-light); margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-gold); }
+        .question-block:last-child { border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); font-size: 1.05rem; }
+        .question-points { float: right; background: var(--gold); color: var(--bg-dark); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
+
+        .options-list { list-style: none; }
+        .options-list li { margin-bottom: 0.75rem; }
+        .option-label {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem;
+            background: var(--bg-input); border: 1px solid transparent; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .option-label:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+        input[type="radio"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+
+        /* Results Section */
+        .results-panel {
+            display: none; background: rgba(16, 185, 129, 0.05); border: 1px solid var(--success);
+            border-radius: 12px; padding: 2rem; margin-top: 2rem; text-align: center;
+        }
+        .results-panel.show { display: block; animation: fadeInUp 0.5s ease; }
+
+        .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .score-box { background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-gold); }
+        .score-box h4 { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+        .score-box .value { font-size: 2rem; font-weight: 700; color: var(--gold); font-family: 'Playfair Display', serif; }
+
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .btn {
+            padding: 0.875rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; border: none; font-size: 0.95rem; display: inline-flex;
+            align-items: center; gap: 0.5rem; text-decoration: none;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%); color: var(--bg-dark); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .btn-secondary { background: var(--bg-input); color: var(--text-primary); border: 1px solid var(--border-gold); }
+        .btn-secondary:hover { background: rgba(212, 175, 55, 0.1); border-color: var(--gold); }
+        .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+        .btn-outline:hover { background: var(--gold); color: var(--bg-dark); }
+
+        footer { text-align: center; padding: 3rem 0; margin-top: 4rem; border-top: 1px solid var(--border-gold); color: var(--text-secondary); font-size: 0.9rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .form-row, .score-grid { grid-template-columns: 1fr; }
+            .chapter-header h1 { font-size: 1.8rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .luxury-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <a href="index.html" class="nav-link">← Kembali ke Landing Page</a>
+            <a href="2.html" class="nav-link next">Pertemuan 2: Adaptasi →</a>
+        </nav>
+
+        <!-- Chapter Header -->
+        <header class="chapter-header">
+            <div class="chapter-badge">PERTEMUAN KE-1</div>
+            <h1>Orientasi Bimbingan dan Konseling</h1>
+            <p>Memahami peran, fungsi, landasan teori, dan manfaat Bimbingan Konseling sebagai sahabat perjalanan siswa di lingkungan MTsN 10 Agam.</p>
+            
+            <div class="author-meta">
+                <div>
+                    <strong>Tika Ramadhani S.Pd</strong><br>
+                    Guru Bimbingan dan Konseling<br>
+                    <span style="font-size: 0.8rem;">✉️ tikaramadhani41@gmail.com</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <main>
+            <section class="content-section">
+                <h3 class="section-title"><span>A</span> Selamat Datang & Pengertian Dasar</h3>
+                <p>Selamat datang di jenjang Madrasah Tsanawiyah (MTs)! Masa transisi dari SD/MI ke MTs adalah fase penting dalam hidupmu. Di sinilah <strong>Bimbingan dan Konseling (BK)</strong> hadir. Banyak siswa salah mengartikan ruang BK sebagai "ruang hukuman" atau "polisi sekolah". <strong>Ini adalah mitos yang harus diluruskan.</strong></p>
+                
+                <div class="highlight-box">
+                    <h4>📌 DEFINISI INTI</h4>
+                    <p>Bimbingan dan Konseling adalah proses pemberian bantuan yang dilakukan oleh seorang ahli (Konselor/Guru BK) kepada individu (siswa) secara bertatap muka atau melalui media tertentu. Tujuannya agar siswa dapat <strong>memahami diri sendiri, menerima diri, mengarahkan diri, dan merealisasikan diri</strong> secara optimal sesuai dengan potensi yang dimilikinya.</p>
+                </div>
+                <p>BK adalah <em>support system</em> (sistem pendukung) yang siap membantu kamu mengatasi hambatan dalam belajar, bersosialisasi, maupun masalah pribadi, agar kamu bisa meraih prestasi terbaik.</p>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>B</span> Landasan Teori Pendukung</h3>
+                <p>Layanan BK di sekolah tidak dilakukan secara sembarangan, melainkan berlandaskan pada teori-teori psikologi perkembangan yang kuat:</p>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 1rem;">
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">1. Teori Perkembangan Psikososial (Erik Erikson):</strong> Siswa kelas VII (usia 12-13 tahun) berada pada tahap <em>Identity vs. Role Confusion</em> (Identitas vs. Kebingungan Peran). Tugas utama remaja adalah mencari jati diri. BK hadir untuk memfasilitasi pencarian identitas yang sehat dan mencegah kebingungan peran.</li>
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">2. Teori Trait and Factor (Frank Parsons):</strong> Teori ini menekankan bahwa keberhasilan individu dicapai ketika ada kesesuaian antara pemahaman terhadap potensi diri (trait) dengan tuntutan lingkungan (factor). BK membantu siswa memetakan potensi tersebut.</li>
+                    <li><strong style="color: var(--gold);">3. Pendekatan Perkembangan (Developmental Guidance):</strong> BK di sekolah bersifat proaktif dan preventif, bertujuan mengembangkan potensi semua siswa, bukan hanya menangani siswa yang bermasalah saja.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>C</span> 4 Bidang Bimbingan dan Konseling</h3>
+                <p>Layanan BK di MTsN 10 Agam mencakup empat bidang utama yang saling berkaitan untuk mendukung keberhasilan siswa secara utuh:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Bidang</th>
+                            <th>Fokus Utama</th>
+                            <th>Contoh Layanan Konkret</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Pribadi</strong></td>
+                            <td>Pemahaman diri, emosi, dan pembentukan karakter.</td>
+                            <td>Konseling tentang rasa percaya diri, mengelola emosi marah, atau kebiasaan buruk.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Sosial</strong></td>
+                            <td>Hubungan dengan teman, guru, keluarga, dan masyarakat.</td>
+                            <td>Mediasi konflik antar teman, cara bergaul yang sehat, atau adaptasi di lingkungan baru.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Belajar</strong></td>
+                            <td>Sikap, kebiasaan, dan strategi belajar yang efektif.</td>
+                            <td>Bimbingan cara membuat jadwal belajar, mengatasi rasa malas, atau memilih metode belajar yang cocok.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Karir</strong></td>
+                            <td>Perencanaan masa depan dan pemahaman dunia kerja/studi.</td>
+                            <td>Pengenalan jurusan di SMA/SMK/MA, atau eksplorasi minat dan bakat sejak dini.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>D</span> Fungsi BK dengan Contoh Nyata</h3>
+                <p>BK memiliki empat fungsi utama yang bekerja secara sistematis:</p>
+                
+                <div class="highlight-box">
+                    <h4>1. Fungsi Pemahaman</h4>
+                    <p>Membantu siswa memahami potensi, kelebihan, kekurangan diri, dan lingkungannya.</p>
+                </div>
+                <div class="highlight-box">
+                    <h4>2. Fungsi Pencegahan (Preventif)</h4>
+                    <p>Mencegah siswa dari permasalahan yang dapat menghambat perkembangannya.</p>
+                    <div class="example-box">
+                        <h4>💡 Contoh Nyata:</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Guru BK memberikan materi tentang bahaya pergaulan bebas dan perundungan (bullying) <em>sebelum</em> kasus tersebut terjadi di sekolah, sehingga siswa memiliki benteng pertahanan diri.</p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h4>3. Fungsi Pengentasan (Kuratif)</h4>
+                    <p>Membantu siswa memecahkan masalah yang sedang dihadapi agar tidak berlarut-larut.</p>
+                    <div class="example-box">
+                        <h4>💡 Contoh Nyata:</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Seorang siswa yang tiba-tiba sering membolos dan nilainya turun karena masalah perceraian orang tua, datang ke ruang BK. Konselor membantu siswa tersebut mengelola emosi dan menemukan cara tetap fokus belajar meski di rumah sedang tidak harmonis.</p>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h4>4. Fungsi Pengembangan</h4>
+                    <p>Memfasilitasi pengembangan potensi siswa secara optimal melalui kegiatan positif.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>E</span> Asas-asas Penting dalam BK</h3>
+                <p>Agar layanan BK berjalan efektif dan etis, terdapat asas-asas yang wajib dipegang teguh, terutama oleh konselor:</p>
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Asas</th>
+                            <th>Penjelasan & Contoh Relevan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Kerahasiaan</strong></td>
+                            <td>Semua data dan cerita siswa dijaga ketat. <br><em>Contoh: Cerita tentang masalah keuangan keluarga yang disampaikan di ruang BK, tidak akan pernah diceritakan Guru BK kepada teman sekelas atau guru lain yang tidak berkepentingan.</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Kesukarelaan</strong></td>
+                            <td>Layanan diberikan atas dasar kesadaran dan kerelaan, bukan paksaan. <br><em>Contoh: Siswa datang ke ruang BK karena ia sendiri merasa butuh didengar, bukan karena diseret oleh guru disiplin.</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Kemandirian</strong></td>
+                            <td>Tujuan akhir BK adalah agar siswa mampu mengambil keputusan dan menyelesaikan masalahnya sendiri. <br><em>Contoh: Konselor tidak langsung memberi "jawaban siap pakai", tetapi membimbing siswa menemukan solusinya sendiri.</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Kekinian</strong></td>
+                            <td>Masalah yang ditangani adalah masalah yang sedang dirasakan saat ini. <br><em>Contoh: Membantu siswa yang sedang stres menghadapi ujian minggu depan, bukan membahas trauma masa kecil yang tidak relevan.</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>F</span> Perbedaan Guru Mapel vs. Guru BK</h3>
+                <p>Banyak siswa bingung membedakan peran Guru Mata Pelajaran dan Guru BK. Tabel berikut akan memperjelasnya:</p>
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th>Guru Mata Pelajaran</th>
+                            <th>Guru BK (Konselor)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Fokus Utama</strong></td>
+                            <td>Penguasaan materi akademik dan kognitif (Nilai).</td>
+                            <td>Pengembangan potensi utuh (Pribadi, Sosial, Belajar, Karir) dan kesejahteraan mental.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Pendekatan</strong></td>
+                            <td>Instruksional (Mengajar di kelas secara klasikal).</td>
+                            <td>Fasilitatif (Mendampingi, mendengarkan, bisa individual atau kelompok).</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Evaluasi</strong></td>
+                            <td>Tes tertulis, ujian, tugas (Angka/Skor).</td>
+                            <td>Observasi perilaku, perubahan sikap, dan pencapaian tujuan pribadi (Non-tes).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>G</span> Referensi Pendukung</h3>
+                <p>Materi ini disusun berdasarkan landasan akademis dan regulasi yang berlaku:</p>
+                <ul class="reference-list">
+                    <li>Prayitno & Erman Amti. (2004). <em>Dasar-Dasar Bimbingan dan Konseling</em>. Jakarta: Rineka Cipta.</li>
+                    <li>Syamsu Yusuf, LN. (2014). <em>Bimbingan dan Konseling Perkembangan Peserta Didik</em>. Bandung: Remaja Rosdakarya.</li>
+                    <li>Peraturan Menteri Pendidikan dan Kebudayaan (Permendikbud) No. 111 Tahun 2014 tentang Bimbingan dan Konseling pada Pendidikan Dasar dan Pendidikan Menengah.</li>
+                    <li>Modul Pelatihan Guru Implementasi Kurikulum Merdeka: Bimbingan dan Konseling. Kemendikbudristek, 2022.</li>
+                </ul>
+            </section>
+
+            <!-- Islamic Quote -->
+            <div class="islamic-quote">
+                <div class="arabic">إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ</div>
+                <p class="translation">"Sesungguhnya Allah tidak akan mengubah keadaan suatu kaum sebelum mereka mengubah keadaan yang ada pada diri mereka sendiri."</p>
+                <p style="color: var(--gold); margin-top: 1rem; font-weight: 600;">— QS. Ar-Ra'd [13]: 11</p>
+            </div>
+
+            <!-- Interactive Formative Test -->
+            <div class="quiz-container" id="quiz-section">
+                <div class="quiz-header">
+                    <h2>📝 Uji Formatif Pertemuan 1</h2>
+                    <p style="color: var(--text-secondary);">Orientasi Bimbingan dan Konseling | Skor Maksimal: 200</p>
+                </div>
+
+                <form id="formatifForm">
+                    <!-- Identitas -->
+                    <div class="content-section" style="margin-bottom: 2rem; border-color: var(--gold);">
+                        <h3 style="color: var(--gold); margin-bottom: 1.5rem; font-family: 'Inter', sans-serif; font-size: 1.1rem;">📋 Identitas Siswa</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Lengkap *</label>
+                                <input type="text" id="nama" class="form-control" required placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label>No. Absen / NIS *</label>
+                                <input type="text" id="nis" class="form-control" required placeholder="Contoh: 05 / 12345">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tanggal Ujian *</label>
+                                <input type="date" id="tanggal" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Kelas *</label>
+                                <select id="kelas" class="form-control" required>
+                                    <option value="">Pilih Kelas</option>
+                                    <option value="VII-A">VII-A</option>
+                                    <option value="VII-B">VII-B</option>
+                                    <option value="VII-C">VII-C</option>
+                                    <option value="VII-D">VII-D</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bagian A: Pilihan Ganda -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">📋 Bagian A: Pilihan Ganda (10 Soal x 10 Poin)</h3>
+                    
+                    <div class="question-block">
+                        <p class="question-text">1. Apa tujuan utama dari layanan Bimbingan dan Konseling di sekolah? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q1" value="A"> A. Menghukum siswa yang melanggar tata tertib</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="B"> B. Membantu siswa mengembangkan potensi diri secara optimal</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="C"> C. Menggantikan peran orang tua di rumah sepenuhnya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="D"> D. Mengatur jadwal pelajaran dan administrasi sekolah</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Berdasarkan teori Erikson, tugas perkembangan utama siswa usia SMP (remaja awal) adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q2" value="A"> A. Trust vs Mistrust (Kepercayaan vs Kecurigaan)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="B"> B. Identity vs Role Confusion (Identitas vs Kebingungan Peran)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="C"> C. Industry vs Inferiority (Ketekunan vs Rasa Rendah Diri)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="D"> D. Intimacy vs Isolation (Keintiman vs Keterkucilan)</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Asas BK yang menjamin bahwa segala data dan cerita siswa tidak akan disebarluaskan kepada pihak yang tidak berkepentingan disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q3" value="A"> A. Asas Kerahasiaan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="B"> B. Asas Kesukarelaan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="C"> C. Asas Kemandirian</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="D"> D. Asas Kegiatan</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Memberikan materi tentang bahaya perundungan (bullying) sebelum kasus tersebut terjadi di sekolah, merupakan penerapan fungsi BK, yaitu... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q4" value="A"> A. Fungsi Pengentasan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="B"> B. Fungsi Pemeliharaan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="C"> C. Fungsi Pencegahan (Preventif)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="D"> D. Fungsi Advokasi</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Layanan BK yang diberikan secara tatap muka antara konselor dengan satu siswa secara pribadi untuk mengatasi masalah spesifik disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q5" value="A"> A. Bimbingan Kelompok</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="B"> B. Konseling Individual</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="C"> C. Mediasi Teman Sebaya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="D"> D. Orientasi Kelas</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">6. Manakah yang BUKAN merupakan 4 bidang bimbingan dan konseling di sekolah? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q6" value="A"> A. Bidang Pribadi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="B"> B. Bidang Sosial</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="C"> C. Bidang Politik</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="D"> D. Bidang Karir</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">7. Jika seorang siswa merasa kesulitan beradaptasi di sekolah baru, langkah terbaik yang sebaiknya dilakukan adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q7" value="A"> A. Membolos sekolah agar tidak stres</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="B"> B. Mencatat diri ke layanan BK untuk berkonsultasi dan mencari solusi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="C"> C. Diam saja dan menarik diri dari pergaulan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="D"> D. Marah-marah kepada teman sekelas yang sudah punya kelompok</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">8. Asas "Kekinian" dalam BK berarti bahwa masalah yang ditangani oleh konselor adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q8" value="A"> A. Masalah yang akan terjadi 10 tahun lagi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="B"> B. Masalah yang sedang dirasakan atau dihadapi siswa saat ini</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="C"> C. Masalah yang pernah dialami oleh guru BK di masa lalu</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="D"> D. Masalah yang sedang viral di media sosial, meskipun tidak dialami siswa</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">9. Perbedaan utama Guru Mata Pelajaran dan Guru BK terletak pada fokus utamanya. Fokus utama Guru BK adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q9" value="A"> A. Penguasaan materi akademik dan pemberian nilai angka</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="B"> B. Pengembangan potensi utuh (pribadi, sosial, belajar, karir) dan kesejahteraan mental</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="C"> C. Mengatur keuangan dan administrasi sekolah</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="D"> D. Mengawasi kebersihan lingkungan sekolah</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">10. Ruang khusus di sekolah yang digunakan untuk melakukan layanan konseling dengan suasana yang nyaman dan privat disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q10" value="A"> A. Ruang Guru</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="B"> B. Ruang UKS</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="C"> C. Ruang Konseling</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="D"> D. Ruang Kepala Sekolah</label></li>
+                        </ul>
+                    </div>
+
+                    <!-- Bagian B: Essay -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">✍️ Bagian B: Essay (5 Soal x 20 Poin)</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">*Sistem akan melakukan estimasi skor berdasarkan kata kunci jawaban. Penilaian akhir tetap berada di tangan Guru.</p>
+
+                    <div class="question-block">
+                        <p class="question-text">1. Jelaskan apa yang dimaksud dengan Bimbingan dan Konseling dengan bahasamu sendiri! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay1" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Sebutkan dan jelaskan 3 dari 4 bidang bimbingan dan konseling di sekolah beserta contoh layanannya! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay2" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Mengapa asas kerahasiaan sangat penting dalam layanan konseling? Jelaskan dampaknya jika asas ini dilanggar! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay3" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Berdasarkan teori Erikson, apa tugas perkembangan utama siswa usia SMP? Bagaimana peran BK dalam membantu tugas tersebut? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay4" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Jelaskan perbedaan mendasar antara peran Guru Mata Pelajaran dan Guru BK dalam membantu siswa di sekolah! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay5" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="button" class="btn btn-primary" onclick="calculateScore()">📊 KIRIM JAWABAN & LIHAT HASIL</button>
+                    </div>
+                </form>
+
+                <!-- Results Panel -->
+                <div id="resultsPanel" class="results-panel">
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">✅ Uji Formatif Selesai!</h3>
+                    <p style="color: var(--text-secondary);">Berikut adalah ringkasan hasil penilaian Anda:</p>
+                    
+                    <div class="score-grid">
+                        <div class="score-box">
+                            <h4>Pilihan Ganda</h4>
+                            <div class="value" id="scorePG">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Essay (Estimasi)</h4>
+                            <div class="value" id="scoreEssay">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Skor Akhir</h4>
+                            <div class="value" id="scoreTotal">0</div>
+                        </div>
+                    </div>
+
+                    <div id="essayFeedback" style="text-align: left; background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border-gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 1rem;">💡 Catatan Penilaian Essay:</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Skor essay di atas adalah <strong>estimasi otomatis</strong> berdasarkan deteksi kata kunci dan panjang jawaban. Guru akan melakukan verifikasi ulang terhadap substansi jawaban Anda untuk mendapatkan nilai resmi.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="downloadPDF()">📄 Unduh PDF Lengkap</button>
+                        <button class="btn btn-secondary" onclick="downloadTXT()">📥 Unduh Skor (TXT)</button>
+                        <button class="btn btn-outline" onclick="sendEmail()">📧 Kirim ke Email Guru</button>
+                        <button class="btn btn-secondary" onclick="resetForm()">🔄 Mulai Ulang</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p class="luxury-font" style="font-size: 1.2rem; color: var(--gold); margin-bottom: 1rem;">MTsN 10 Agam</p>
+            <p>&copy; 2026 Tika Ramadhani S.Pd. Hak Cipta Dilindungi Undang-Undang.</p>
+            <p style="margin-top: 0.5rem;">Email: <a href="mailto:tikaramadhani41@gmail.com">tikaramadhani41@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda (Diperbarui sesuai konten baru)
+        const correctAnswers = {
+            q1: 'B', q2: 'B', q3: 'A', q4: 'C', q5: 'B',
+            q6: 'C', q7: 'B', q8: 'B', q9: 'B', q10: 'C'
+        };
+
+        // Kata kunci untuk estimasi penilaian essay (diperluas)
+        const essayKeywords = {
+            essay1: ['bantuan', 'potensi', 'mandiri', 'optimal', 'ahli', 'konselor'],
+            essay2: ['pribadi', 'sosial', 'belajar', 'karir'],
+            essay3: ['rahasia', 'percaya', 'aman', 'privasi', 'sebarkan', 'bocor'],
+            essay4: ['erikson', 'identitas', 'kebingungan', 'jati diri', 'peran'],
+            essay5: ['akademik', 'nilai', 'pribadi', 'mental', 'mengajar', 'mendampingi']
+        };
+
+        let finalScores = { pg: 0, essay: 0, total: 0 };
+
+        function calculateScore() {
+            // Validasi form
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            if (!nama || !nis) {
+                alert('Harap lengkapi Identitas Siswa (Nama dan NIS) terlebih dahulu!');
+                return;
+            }
+
+            // Hitung PG
+            let pgScore = 0;
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Hitung Estimasi Essay (berdasarkan kata kunci dan panjang minimal)
+            let essayScore = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                const answer = document.getElementById(`essay${i}`).value.toLowerCase();
+                const keywords = essayKeywords[`essay${i}`];
+                let matchCount = 0;
+                
+                keywords.forEach(keyword => {
+                    if (answer.includes(keyword)) matchCount++;
+                });
+
+                // Logika skor: minimal 15 karakter + kecocokan kata kunci
+                if (answer.length > 15) {
+                    if (matchCount >= 2) essayScore += 20;
+                    else if (matchCount >= 1) essayScore += 10;
+                    else essayScore += 5; // Partisipasi minimal
+                }
+            }
+
+            finalScores = {
+                pg: pgScore,
+                essay: essayScore,
+                total: pgScore + essayScore
+            };
+
+            // Tampilkan hasil
+            document.getElementById('scorePG').textContent = finalScores.pg;
+            document.getElementById('scoreEssay').textContent = finalScores.essay;
+            document.getElementById('scoreTotal').textContent = finalScores.total;
+            
+            document.getElementById('resultsPanel').classList.add('show');
+            
+            // Scroll ke hasil
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('quiz-section');
+            const nama = document.getElementById('nama').value || 'Siswa';
+            const opt = {
+                margin: 10,
+                filename: `Uji_Formatif_P1_${nama.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, backgroundColor: '#0a0e17' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function downloadTXT() {
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            const kelas = document.getElementById('kelas').value;
+            const tanggal = document.getElementById('tanggal').value;
+            
+            const content = `=== HASIL UJI FORMATIF BK ===\n` +
+                           `Pertemuan 1: Orientasi Bimbingan dan Konseling\n` +
+                           `MTsN 10 Agam | Tahun Pelajaran 2026/2027\n\n` +
+                           `Nama: ${nama}\n` +
+                           `NIS: ${nis}\n` +
+                           `Kelas: ${kelas}\n` +
+                           `Tanggal: ${tanggal}\n\n` +
+                           `--- SKOR ---\n` +
+                           `Pilihan Ganda: ${finalScores.pg} / 100\n` +
+                           `Essay (Estimasi): ${finalScores.essay} / 100\n` +
+                           `TOTAL SKOR: ${finalScores.total} / 200\n\n` +
+                           `Catatan: Skor essay adalah estimasi otomatis. Verifikasi guru diperlukan.\n` +
+                           `Dikirim ke: tikaramadhani41@gmail.com`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Skor_BK_P1_${nama.replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function sendEmail() {
+            const nama = document.getElementById('nama').value;
+            const kelas = document.getElementById('kelas').value;
+            const total = finalScores.total;
+            
+            const subject = encodeURIComponent(`Hasil Uji Formatif BK Pertemuan 1 - ${nama} (${kelas})`);
+            const body = encodeURIComponent(`Yth. Ibu Tika Ramadhani S.Pd,\n\nBerikut adalah hasil uji formatif saya:\n\nNama: ${nama}\nKelas: ${kelas}\nSkor Total: ${total}/200\n(PG: ${finalScores.pg}, Essay: ${finalScores.essay})\n\nTerima kasih.\n\n*File detail telah diunduh secara terpisah.*`);
+            
+            window.location.href = `mailto:tikaramadhani41@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        function resetForm() {
+            if (confirm('Apakah Anda yakin ingin mengosongkan semua jawaban dan mulai ulang?')) {
+                document.getElementById('formatifForm').reset();
+                document.getElementById('resultsPanel').classList.remove('show');
+                finalScores = { pg: 0, essay: 0, total: 0 };
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Set default date to today
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

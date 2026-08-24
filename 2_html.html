@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 2: Adaptasi di Sekolah Baru | Bimbingan dan Konseling Kelas VII</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- html2pdf.js untuk fitur Unduh PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-input: rgba(255, 255, 255, 0.05);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-gold: rgba(212, 175, 55, 0.2);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .luxury-font { font-family: 'Playfair Display', serif; }
+
+        .container { max-width: 950px; margin: 0 auto; padding: 2rem; }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-gold);
+            margin-bottom: 3rem;
+        }
+
+        .nav-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover { color: var(--gold-light); transform: translateX(-3px); }
+        .nav-link.next:hover { transform: translateX(3px); }
+
+        /* Hero / Header Section */
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-gold);
+        }
+
+        .chapter-header h1 {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .chapter-header p {
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        .author-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-gold);
+            padding-top: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .author-meta strong { color: var(--gold); }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title span {
+            background: var(--gold);
+            color: var(--bg-dark);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 { color: var(--gold-light); margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        .example-box h4 { color: var(--success); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* Tables */
+        .luxury-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .luxury-table th, .luxury-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-gold);
+            text-align: left;
+        }
+        .luxury-table th {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .luxury-table tr:hover { background: rgba(255, 255, 255, 0.02); }
+        .luxury-table td { color: var(--text-secondary); }
+
+        /* References */
+        .reference-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reference-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .reference-list li::before {
+            content: '📚';
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .islamic-quote {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .islamic-quote .arabic {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-family: 'Traditional Arabic', serif;
+        }
+
+        .islamic-quote .translation {
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form & Quiz Styles */
+        .quiz-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .quiz-header { text-align: center; margin-bottom: 2.5rem; }
+        .quiz-header h2 { color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: var(--gold-light); margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-gold); }
+        .question-block:last-child { border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); font-size: 1.05rem; }
+        .question-points { float: right; background: var(--gold); color: var(--bg-dark); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
+
+        .options-list { list-style: none; }
+        .options-list li { margin-bottom: 0.75rem; }
+        .option-label {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem;
+            background: var(--bg-input); border: 1px solid transparent; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .option-label:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+        input[type="radio"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+
+        /* Results Section */
+        .results-panel {
+            display: none; background: rgba(16, 185, 129, 0.05); border: 1px solid var(--success);
+            border-radius: 12px; padding: 2rem; margin-top: 2rem; text-align: center;
+        }
+        .results-panel.show { display: block; animation: fadeInUp 0.5s ease; }
+
+        .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .score-box { background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-gold); }
+        .score-box h4 { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+        .score-box .value { font-size: 2rem; font-weight: 700; color: var(--gold); font-family: 'Playfair Display', serif; }
+
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .btn {
+            padding: 0.875rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; border: none; font-size: 0.95rem; display: inline-flex;
+            align-items: center; gap: 0.5rem; text-decoration: none;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%); color: var(--bg-dark); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .btn-secondary { background: var(--bg-input); color: var(--text-primary); border: 1px solid var(--border-gold); }
+        .btn-secondary:hover { background: rgba(212, 175, 55, 0.1); border-color: var(--gold); }
+        .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+        .btn-outline:hover { background: var(--gold); color: var(--bg-dark); }
+
+        footer { text-align: center; padding: 3rem 0; margin-top: 4rem; border-top: 1px solid var(--border-gold); color: var(--text-secondary); font-size: 0.9rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .form-row, .score-grid { grid-template-columns: 1fr; }
+            .chapter-header h1 { font-size: 1.8rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .luxury-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <a href="1.html" class="nav-link">← Pertemuan 1: Orientasi BK</a>
+            <a href="3.html" class="nav-link next">Pertemuan 3: Adaptasi (Lanjutan) →</a>
+        </nav>
+
+        <!-- Chapter Header -->
+        <header class="chapter-header">
+            <div class="chapter-badge">PERTEMUAN KE-2</div>
+            <h1>Adaptasi di Sekolah Baru</h1>
+            <p>Memahami proses transisi dari SD/MI ke MTs, mengenali tantangan adaptasi akademik, sosial, dan emosional, serta strategi efektif untuk membangun rasa nyaman di lingkungan madrasah.</p>
+            
+            <div class="author-meta">
+                <div>
+                    <strong>Tika Ramadhani S.Pd</strong><br>
+                    Guru Bimbingan dan Konseling<br>
+                    <span style="font-size: 0.8rem;">✉️ tikaramadhani41@gmail.com</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <main>
+            <section class="content-section">
+                <h3 class="section-title"><span>A</span> Pengertian Adaptasi Sekolah</h3>
+                <p>Transisi dari SD/MI ke MTs adalah salah satu fase penting dalam kehidupan siswa. Fase ini membawa perubahan signifikan, baik dari segi lingkungan fisik, kurikulum, teman sebaya, hingga ekspektasi guru. <strong>Adaptasi</strong> adalah proses penyesuaian diri terhadap perubahan-perubahan tersebut agar siswa dapat berfungsi secara optimal di lingkungan barunya.</p>
+                
+                <div class="highlight-box">
+                    <h4>📌 DEFINISI INTI</h4>
+                    <p>Adaptasi sekolah adalah proses dinamis di mana siswa menyesuaikan diri dengan lingkungan, aturan, kurikulum, dan hubungan sosial di sekolah baru, sehingga dapat merasa nyaman, percaya diri, dan berhasil secara akademik maupun sosial.</p>
+                </div>
+                
+                <p>Adaptasi yang baik tidak terjadi dalam semalam. Diperlukan waktu, usaha, dan dukungan dari berbagai pihak (guru, orang tua, teman, dan konselor) agar siswa dapat melewati masa transisi ini dengan positif.</p>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>B</span> Landasan Teori Pendukung</h3>
+                <p>Proses adaptasi siswa di sekolah baru dapat dipahami melalui beberapa teori psikologi perkembangan yang relevan:</p>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 1rem;">
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">1. Teori Transisi Schlossberg (1981):</strong> Teori ini menjelaskan bahwa transisi adalah peristiwa atau non-peristiwa yang mengakibatkan perubahan peran, hubungan, atau asumsi. Schlossberg mengidentifikasi empat faktor yang mempengaruhi kemampuan individu dalam beradaptasi: <em>situation</em> (situasi), <em>self</em> (diri sendiri), <em>support</em> (dukungan), dan <em>strategies</em> (strategi).</li>
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">2. Teori Stres dan Coping (Lazarus & Folkman, 1984):</strong> Transisi sekolah dapat menjadi sumber stres bagi siswa. Teori ini menekankan bahwa keberhasilan adaptasi bergantung pada kemampuan siswa melakukan <em>coping</em> (penanggulangan), baik yang berfokus pada masalah (<em>problem-focused coping</em>) maupun pada emosi (<em>emotion-focused coping</em>).</li>
+                    <li><strong style="color: var(--gold);">3. Teori Ecological Systems (Bronfenbrenner, 1979):</strong> Perkembangan siswa dipengaruhi oleh berbagai sistem lingkungan, mulai dari mikrosistem (keluarga, sekolah), mesosistem (hubungan antara keluarga dan sekolah), hingga makrosistem (budaya dan nilai masyarakat). Adaptasi yang sukses memerlukan keselarasan antar sistem ini.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>C</span> Tantangan Adaptasi di MTs</h3>
+                <p>Siswa yang baru masuk MTs seringkali menghadapi berbagai tantangan yang dapat mempengaruhi kenyamanan dan keberhasilan mereka. Berikut adalah beberapa tantangan utama:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Aspek</th>
+                            <th>Tantangan yang Dihadapi</th>
+                            <th>Dampak jika Tidak Diatasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Akademik</strong></td>
+                            <td>Kurikulum lebih kompleks, jumlah mata pelajaran bertambah, tuntutan belajar lebih tinggi.</td>
+                            <td>Penurunan nilai, rasa frustrasi, kehilangan motivasi belajar.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Sosial</strong></td>
+                            <td>Membangun pertemanan baru, beradaptasi dengan budaya sekolah, menghadapi perundungan.</td>
+                            <td>Rasa kesepian, isolasi sosial, kesulitan bekerja sama.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Emosional</strong></td>
+                            <td>Rasa cemas, takut gagal, rindu sekolah lama, perubahan mood.</td>
+                            <td>Stres, kecemasan berlebihan, penurunan kepercayaan diri.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Fisik</strong></td>
+                            <td>Lingkungan sekolah baru yang lebih luas, rutinitas harian yang berbeda.</td>
+                            <td>Kelelahan, sering terlambat, kesulitan menemukan ruang kelas.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>D</span> Strategi Adaptasi yang Efektif</h3>
+                <p>Untuk mengatasi tantangan adaptasi, siswa dapat menerapkan beberapa strategi berikut:</p>
+                
+                <div class="highlight-box">
+                    <h4>1. Strategi Berfokus pada Masalah (Problem-Focused Coping)</h4>
+                    <p>Langkah-langkah konkret untuk menyelesaikan masalah adaptasi:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Mempelajari tata tertib dan aturan sekolah sejak awal.</li>
+                        <li>Membuat jadwal belajar yang teratur dan realistis.</li>
+                        <li>Bertanya kepada guru atau senior jika ada hal yang tidak dipahami.</li>
+                        <li>Bergabung dengan kegiatan ekstrakurikuler untuk memperluas jejaring sosial.</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>2. Strategi Berfokus pada Emosi (Emotion-Focused Coping)</h4>
+                    <p>Mengelola perasaan dan emosi selama masa transisi:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Berbicara dengan orang tua, teman, atau guru BK tentang perasaan yang dialami.</li>
+                        <li>Melakukan aktivitas relaksasi seperti olahraga, hobi, atau meditasi.</li>
+                        <li>Menulis jurnal untuk mengekspresikan emosi.</li>
+                        <li>Mengingat kembali keberhasilan masa lalu untuk membangun kepercayaan diri.</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Studi Kasus Mini: Kisah Rina</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Rina adalah siswa kelas VII yang baru pindah dari SD di desa ke MTsN 10 Agam di kota. Awalnya, Rina merasa cemas karena tidak mengenal siapa pun dan merasa tertinggal dalam pelajaran Matematika. Namun, Rina memutuskan untuk bergabung dengan ekstrakurikuler Pramuka, di mana ia bertemu dengan teman-teman yang ramah. Ia juga rutin berkonsultasi dengan guru BK setiap minggu untuk membahas kesulitan belajarnya. Setelah tiga bulan, Rina merasa lebih nyaman, memiliki teman dekat, dan nilainya mulai membaik. <strong>Kunci keberhasilan Rina:</strong> Ia aktif mencari dukungan sosial dan tidak ragu meminta bantuan.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>E</span> Peran BK dalam Membantu Adaptasi</h3>
+                <p>Guru BK memiliki peran penting dalam memfasilitasi proses adaptasi siswa baru. Berikut adalah beberapa layanan BK yang relevan:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Layanan BK</th>
+                            <th>Bentuk Kegiatan</th>
+                            <th>Manfaat bagi Siswa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Orientasi Sekolah</strong></td>
+                            <td>Tour keliling sekolah, pengenalan fasilitas, penjelasan tata tertib.</td>
+                            <td>Siswa memahami lingkungan fisik dan aturan sekolah.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Bimbingan Kelompok</strong></td>
+                            <td>Diskusi kelompok tentang tantangan adaptasi dan solusi bersama.</td>
+                            <td>Siswa merasa tidak sendirian, belajar dari pengalaman teman sebaya.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Konseling Individual</strong></td>
+                            <td>Sesi tatap muka untuk siswa yang mengalami kesulitan adaptasi spesifik.</td>
+                            <td>Siswa mendapatkan perhatian personal dan strategi coping yang disesuaikan.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Kolaborasi dengan Orang Tua</strong></td>
+                            <td>Pertemuan atau komunikasi rutin dengan orang tua siswa baru.</td>
+                            <td>Orang tua dapat memberikan dukungan yang tepat di rumah.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>F</span> Tanda-Tanda Adaptasi Berhasil vs. Gagal</h3>
+                <p>Bagaimana kita tahu apakah seorang siswa berhasil beradaptasi atau justru mengalami kesulitan? Berikut adalah indikatornya:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th style="color: var(--success);">✅ Adaptasi Berhasil</th>
+                            <th style="color: var(--error);">❌ Adaptasi Gagal/Bermasalah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Emosional</strong></td>
+                            <td>Merasa nyaman, percaya diri, optimis.</td>
+                            <td>Cemas berlebihan, sering menangis, murung.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Sosial</strong></td>
+                            <td>Punya teman, aktif dalam kegiatan, bekerja sama.</td>
+                            <td>Menyendiri, dihindari teman, konflik terus-menerus.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Akademik</strong></td>
+                            <td>Nilai stabil atau meningkat, rajin mengerjakan tugas.</td>
+                            <td>Nilai turun drastis, sering tidak mengumpulkan tugas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Fisik</strong></td>
+                            <td>Sehat, jarang sakit, hadir tepat waktu.</td>
+                            <td>Sering sakit, sering terlambat atau membolos.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>G</span> Referensi Pendukung</h3>
+                <p>Materi ini disusun berdasarkan landasan akademis dan penelitian yang relevan:</p>
+                <ul class="reference-list">
+                    <li>Schlossberg, N. K. (1981). <em>A Model for Counseling People Through Life Transitions</em>. In C. E. Moustakas (Ed.), Counseling and Human Development. Boston: Houghton Mifflin.</li>
+                    <li>Lazarus, R. S., & Folkman, S. (1984). <em>Stress, Appraisal, and Coping</em>. New York: Springer Publishing.</li>
+                    <li>Bronfenbrenner, U. (1979). <em>The Ecology of Human Development: Experiments by Nature and Design</em>. Cambridge, MA: Harvard University Press.</li>
+                    <li>Prayitno & Erman Amti. (2004). <em>Dasar-Dasar Bimbingan dan Konseling</em>. Jakarta: Rineka Cipta.</li>
+                    <li>Modul Pelatihan Guru Implementasi Kurikulum Merdeka: Bimbingan dan Konseling. Kemendikbudristek, 2022.</li>
+                </ul>
+            </section>
+
+            <!-- Islamic Quote -->
+            <div class="islamic-quote">
+                <div class="arabic">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا</div>
+                <p class="translation">"Karena sesungguhnya sesudah kesulitan itu ada kemudahan."</p>
+                <p style="color: var(--gold); margin-top: 1rem; font-weight: 600;">— QS. Al-Insyirah [94]: 5</p>
+            </div>
+
+            <!-- Interactive Formative Test -->
+            <div class="quiz-container" id="quiz-section">
+                <div class="quiz-header">
+                    <h2>📝 Uji Formatif Pertemuan 2</h2>
+                    <p style="color: var(--text-secondary);">Adaptasi di Sekolah Baru | Skor Maksimal: 200</p>
+                </div>
+
+                <form id="formatifForm">
+                    <!-- Identitas -->
+                    <div class="content-section" style="margin-bottom: 2rem; border-color: var(--gold);">
+                        <h3 style="color: var(--gold); margin-bottom: 1.5rem; font-family: 'Inter', sans-serif; font-size: 1.1rem;">📋 Identitas Siswa</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Lengkap *</label>
+                                <input type="text" id="nama" class="form-control" required placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label>No. Absen / NIS *</label>
+                                <input type="text" id="nis" class="form-control" required placeholder="Contoh: 05 / 12345">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tanggal Ujian *</label>
+                                <input type="date" id="tanggal" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Kelas *</label>
+                                <select id="kelas" class="form-control" required>
+                                    <option value="">Pilih Kelas</option>
+                                    <option value="VII-A">VII-A</option>
+                                    <option value="VII-B">VII-B</option>
+                                    <option value="VII-C">VII-C</option>
+                                    <option value="VII-D">VII-D</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bagian A: Pilihan Ganda -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">📋 Bagian A: Pilihan Ganda (10 Soal x 10 Poin)</h3>
+                    
+                    <div class="question-block">
+                        <p class="question-text">1. Apa yang dimaksud dengan adaptasi sekolah? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q1" value="A"> A. Proses menghafal nama semua guru dan teman</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="B"> B. Proses penyesuaian diri terhadap lingkungan, aturan, dan hubungan sosial di sekolah baru</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="C"> C. Proses pindah dari satu sekolah ke sekolah lain</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="D"> D. Proses mengikuti ujian masuk sekolah</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Berdasarkan Teori Transisi Schlossberg, faktor yang TIDAK mempengaruhi kemampuan adaptasi adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q2" value="A"> A. Situation (Situasi)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="B"> B. Self (Diri Sendiri)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="C"> C. Support (Dukungan)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="D"> D. Salary (Gaji)</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Seorang siswa merasa cemas dan takut gagal saat menghadapi pelajaran baru di MTs. Ini merupakan tantangan adaptasi di bidang... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q3" value="A"> A. Akademik</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="B"> B. Sosial</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="C"> C. Emosional</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="D"> D. Fisik</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Bergabung dengan ekstrakurikuler untuk memperluas pertemanan merupakan contoh strategi adaptasi... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q4" value="A"> A. Problem-Focused Coping</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="B"> B. Emotion-Focused Coping</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="C"> C. Avoidance Coping</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="D"> D. Denial Coping</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Menurut Teori Ecological Systems Bronfenbrenner, hubungan antara keluarga dan sekolah termasuk dalam sistem... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q5" value="A"> A. Mikrosistem</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="B"> B. Mesosistem</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="C"> C. Eksosistem</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="D"> D. Makrosistem</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">6. Manakah yang BUKAN merupakan tanda adaptasi berhasil? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q6" value="A"> A. Merasa nyaman dan percaya diri</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="B"> B. Punya teman dan aktif dalam kegiatan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="C"> C. Nilai stabil atau meningkat</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="D"> D. Sering membolos dan nilai turun drastis</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">7. Jika seorang siswa mengalami kesulitan adaptasi yang berkepanjangan, langkah terbaik yang sebaiknya dilakukan adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q7" value="A"> A. Diam saja dan berharap masalah hilang sendiri</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="B"> B. Mencatat diri ke layanan BK untuk berkonsultasi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="C"> C. Pindah sekolah lagi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="D"> D. Marah-marah kepada guru dan teman</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">8. Menurut Teori Stres dan Coping Lazarus & Folkman, menulis jurnal untuk mengekspresikan emosi termasuk dalam strategi... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q8" value="A"> A. Problem-Focused Coping</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="B"> B. Emotion-Focused Coping</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="C"> C. Avoidance Coping</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="D"> D. Denial Coping</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">9. Layanan BK yang memberikan perhatian personal kepada siswa yang mengalami kesulitan adaptasi spesifik disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q9" value="A"> A. Orientasi Sekolah</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="B"> B. Bimbingan Kelompok</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="C"> C. Konseling Individual</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="D"> D. Mediasi Teman Sebaya</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">10. Kunci keberhasilan adaptasi Rina dalam studi kasus adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q10" value="A"> A. Ia menunggu sampai teman-teman mendekatinya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="B"> B. Ia aktif mencari dukungan sosial dan tidak ragu meminta bantuan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="C"> C. Ia mengabaikan perasaannya dan fokus belajar saja</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="D"> D. Ia sering membolos agar tidak stres</label></li>
+                        </ul>
+                    </div>
+
+                    <!-- Bagian B: Essay -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">✍️ Bagian B: Essay (5 Soal x 20 Poin)</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">*Sistem akan melakukan estimasi skor berdasarkan kata kunci jawaban. Penilaian akhir tetap berada di tangan Guru.</p>
+
+                    <div class="question-block">
+                        <p class="question-text">1. Jelaskan apa yang dimaksud dengan adaptasi sekolah dan mengapa proses ini penting bagi siswa baru! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay1" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Sebutkan dan jelaskan 3 dari 4 aspek tantangan adaptasi di MTs beserta dampaknya jika tidak diatasi! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay2" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Jelaskan perbedaan antara strategi Problem-Focused Coping dan Emotion-Focused Coping! Berikan masing-masing satu contoh konkret! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay3" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Berdasarkan Teori Transisi Schlossberg, jelaskan 4 faktor yang mempengaruhi kemampuan adaptasi seseorang! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay4" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Ceritakan pengalaman pribadi Anda dalam beradaptasi di MTsN 10 Agam! Apa tantangan terbesar yang Anda hadapi dan bagaimana cara Anda mengatasinya? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay5" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="button" class="btn btn-primary" onclick="calculateScore()">📊 KIRIM JAWABAN & LIHAT HASIL</button>
+                    </div>
+                </form>
+
+                <!-- Results Panel -->
+                <div id="resultsPanel" class="results-panel">
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">✅ Uji Formatif Selesai!</h3>
+                    <p style="color: var(--text-secondary);">Berikut adalah ringkasan hasil penilaian Anda:</p>
+                    
+                    <div class="score-grid">
+                        <div class="score-box">
+                            <h4>Pilihan Ganda</h4>
+                            <div class="value" id="scorePG">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Essay (Estimasi)</h4>
+                            <div class="value" id="scoreEssay">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Skor Akhir</h4>
+                            <div class="value" id="scoreTotal">0</div>
+                        </div>
+                    </div>
+
+                    <div id="essayFeedback" style="text-align: left; background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border-gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 1rem;">💡 Catatan Penilaian Essay:</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Skor essay di atas adalah <strong>estimasi otomatis</strong> berdasarkan deteksi kata kunci dan panjang jawaban. Guru akan melakukan verifikasi ulang terhadap substansi jawaban Anda untuk mendapatkan nilai resmi.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="downloadPDF()">📄 Unduh PDF Lengkap</button>
+                        <button class="btn btn-secondary" onclick="downloadTXT()">📥 Unduh Skor (TXT)</button>
+                        <button class="btn btn-outline" onclick="sendEmail()">📧 Kirim ke Email Guru</button>
+                        <button class="btn btn-secondary" onclick="resetForm()">🔄 Mulai Ulang</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p class="luxury-font" style="font-size: 1.2rem; color: var(--gold); margin-bottom: 1rem;">MTsN 10 Agam</p>
+            <p>&copy; 2026 Tika Ramadhani S.Pd. Hak Cipta Dilindungi Undang-Undang.</p>
+            <p style="margin-top: 0.5rem;">Email: <a href="mailto:tikaramadhani41@gmail.com">tikaramadhani41@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const correctAnswers = {
+            q1: 'B', q2: 'D', q3: 'C', q4: 'A', q5: 'B',
+            q6: 'D', q7: 'B', q8: 'B', q9: 'C', q10: 'B'
+        };
+
+        // Kata kunci untuk estimasi penilaian essay
+        const essayKeywords = {
+            essay1: ['adaptasi', 'penyesuaian', 'lingkungan', 'aturan', 'sosial', 'nyaman', 'penting'],
+            essay2: ['akademik', 'sosial', 'emosional', 'fisik', 'kurikulum', 'teman', 'cemas', 'dampak'],
+            essay3: ['problem', 'emotion', 'masalah', 'emosi', 'strategi', 'contoh', 'jurnal', 'ekstrakurikuler'],
+            essay4: ['schlossberg', 'situation', 'self', 'support', 'strategies', 'situasi', 'diri', 'dukungan'],
+            essay5: ['pengalaman', 'tantangan', 'mengatasi', 'solusi', 'bk', 'teman', 'guru', 'belajar']
+        };
+
+        let finalScores = { pg: 0, essay: 0, total: 0 };
+
+        function calculateScore() {
+            // Validasi form
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            if (!nama || !nis) {
+                alert('Harap lengkapi Identitas Siswa (Nama dan NIS) terlebih dahulu!');
+                return;
+            }
+
+            // Hitung PG
+            let pgScore = 0;
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Hitung Estimasi Essay
+            let essayScore = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                const answer = document.getElementById(`essay${i}`).value.toLowerCase();
+                const keywords = essayKeywords[`essay${i}`];
+                let matchCount = 0;
+                
+                keywords.forEach(keyword => {
+                    if (answer.includes(keyword)) matchCount++;
+                });
+
+                if (answer.length > 15) {
+                    if (matchCount >= 2) essayScore += 20;
+                    else if (matchCount >= 1) essayScore += 10;
+                    else essayScore += 5;
+                }
+            }
+
+            finalScores = {
+                pg: pgScore,
+                essay: essayScore,
+                total: pgScore + essayScore
+            };
+
+            // Tampilkan hasil
+            document.getElementById('scorePG').textContent = finalScores.pg;
+            document.getElementById('scoreEssay').textContent = finalScores.essay;
+            document.getElementById('scoreTotal').textContent = finalScores.total;
+            
+            document.getElementById('resultsPanel').classList.add('show');
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('quiz-section');
+            const nama = document.getElementById('nama').value || 'Siswa';
+            const opt = {
+                margin: 10,
+                filename: `Uji_Formatif_P2_${nama.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, backgroundColor: '#0a0e17' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function downloadTXT() {
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            const kelas = document.getElementById('kelas').value;
+            const tanggal = document.getElementById('tanggal').value;
+            
+            const content = `=== HASIL UJI FORMATIF BK ===\n` +
+                           `Pertemuan 2: Adaptasi di Sekolah Baru\n` +
+                           `MTsN 10 Agam | Tahun Pelajaran 2026/2027\n\n` +
+                           `Nama: ${nama}\n` +
+                           `NIS: ${nis}\n` +
+                           `Kelas: ${kelas}\n` +
+                           `Tanggal: ${tanggal}\n\n` +
+                           `--- SKOR ---\n` +
+                           `Pilihan Ganda: ${finalScores.pg} / 100\n` +
+                           `Essay (Estimasi): ${finalScores.essay} / 100\n` +
+                           `TOTAL SKOR: ${finalScores.total} / 200\n\n` +
+                           `Catatan: Skor essay adalah estimasi otomatis. Verifikasi guru diperlukan.\n` +
+                           `Dikirim ke: tikaramadhani41@gmail.com`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Skor_BK_P2_${nama.replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function sendEmail() {
+            const nama = document.getElementById('nama').value;
+            const kelas = document.getElementById('kelas').value;
+            const total = finalScores.total;
+            
+            const subject = encodeURIComponent(`Hasil Uji Formatif BK Pertemuan 2 - ${nama} (${kelas})`);
+            const body = encodeURIComponent(`Yth. Ibu Tika Ramadhani S.Pd,\n\nBerikut adalah hasil uji formatif saya:\n\nNama: ${nama}\nKelas: ${kelas}\nSkor Total: ${total}/200\n(PG: ${finalScores.pg}, Essay: ${finalScores.essay})\n\nTerima kasih.\n\n*File detail telah diunduh secara terpisah.*`);
+            
+            window.location.href = `mailto:tikaramadhani41@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        function resetForm() {
+            if (confirm('Apakah Anda yakin ingin mengosongkan semua jawaban dan mulai ulang?')) {
+                document.getElementById('formatifForm').reset();
+                document.getElementById('resultsPanel').classList.remove('show');
+                finalScores = { pg: 0, essay: 0, total: 0 };
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

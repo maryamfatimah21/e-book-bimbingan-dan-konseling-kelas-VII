@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 3: Adaptasi Lanjutan | Bimbingan dan Konseling Kelas VII</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- html2pdf.js untuk fitur Unduh PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-input: rgba(255, 255, 255, 0.05);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-gold: rgba(212, 175, 55, 0.2);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .luxury-font { font-family: 'Playfair Display', serif; }
+
+        .container { max-width: 950px; margin: 0 auto; padding: 2rem; }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-gold);
+            margin-bottom: 3rem;
+        }
+
+        .nav-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover { color: var(--gold-light); transform: translateX(-3px); }
+        .nav-link.next:hover { transform: translateX(3px); }
+
+        /* Hero / Header Section */
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-gold);
+        }
+
+        .chapter-header h1 {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .chapter-header p {
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        .author-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-gold);
+            padding-top: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .author-meta strong { color: var(--gold); }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title span {
+            background: var(--gold);
+            color: var(--bg-dark);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 { color: var(--gold-light); margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        .example-box h4 { color: var(--success); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* Tables */
+        .luxury-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .luxury-table th, .luxury-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-gold);
+            text-align: left;
+        }
+        .luxury-table th {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .luxury-table tr:hover { background: rgba(255, 255, 255, 0.02); }
+        .luxury-table td { color: var(--text-secondary); }
+
+        /* References */
+        .reference-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reference-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .reference-list li::before {
+            content: '📚';
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .islamic-quote {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .islamic-quote .arabic {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-family: 'Traditional Arabic', serif;
+        }
+
+        .islamic-quote .translation {
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form & Quiz Styles */
+        .quiz-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .quiz-header { text-align: center; margin-bottom: 2.5rem; }
+        .quiz-header h2 { color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: var(--gold-light); margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-gold); }
+        .question-block:last-child { border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); font-size: 1.05rem; }
+        .question-points { float: right; background: var(--gold); color: var(--bg-dark); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
+
+        .options-list { list-style: none; }
+        .options-list li { margin-bottom: 0.75rem; }
+        .option-label {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem;
+            background: var(--bg-input); border: 1px solid transparent; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .option-label:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+        input[type="radio"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+
+        /* Results Section */
+        .results-panel {
+            display: none; background: rgba(16, 185, 129, 0.05); border: 1px solid var(--success);
+            border-radius: 12px; padding: 2rem; margin-top: 2rem; text-align: center;
+        }
+        .results-panel.show { display: block; animation: fadeInUp 0.5s ease; }
+
+        .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .score-box { background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-gold); }
+        .score-box h4 { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+        .score-box .value { font-size: 2rem; font-weight: 700; color: var(--gold); font-family: 'Playfair Display', serif; }
+
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .btn {
+            padding: 0.875rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; border: none; font-size: 0.95rem; display: inline-flex;
+            align-items: center; gap: 0.5rem; text-decoration: none;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%); color: var(--bg-dark); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .btn-secondary { background: var(--bg-input); color: var(--text-primary); border: 1px solid var(--border-gold); }
+        .btn-secondary:hover { background: rgba(212, 175, 55, 0.1); border-color: var(--gold); }
+        .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+        .btn-outline:hover { background: var(--gold); color: var(--bg-dark); }
+
+        footer { text-align: center; padding: 3rem 0; margin-top: 4rem; border-top: 1px solid var(--border-gold); color: var(--text-secondary); font-size: 0.9rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .form-row, .score-grid { grid-template-columns: 1fr; }
+            .chapter-header h1 { font-size: 1.8rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .luxury-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <a href="2.html" class="nav-link">← Pertemuan 2: Adaptasi Dasar</a>
+            <a href="4.html" class="nav-link next">Pertemuan 4: Tata Tertib →</a>
+        </nav>
+
+        <!-- Chapter Header -->
+        <header class="chapter-header">
+            <div class="chapter-badge">PERTEMUAN KE-3</div>
+            <h1>Adaptasi Lanjutan: Membangun Jejaring Sosial & Kepercayaan Diri</h1>
+            <p>Mengembangkan keterampilan sosial, membangun kepercayaan diri, dan menciptakan jejaring pertemanan yang sehat dan suportif di lingkungan madrasah baru.</p>
+            
+            <div class="author-meta">
+                <div>
+                    <strong>Tika Ramadhani S.Pd</strong><br>
+                    Guru Bimbingan dan Konseling<br>
+                    <span style="font-size: 0.8rem;">✉️ tikaramadhani41@gmail.com</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <main>
+            <section class="content-section">
+                <h3 class="section-title"><span>A</span> Dari Bertahan ke Berkembang</h3>
+                <p>Pada pertemuan sebelumnya, kita telah membahas dasar-dasar adaptasi di sekolah baru. Sekarang, saatnya melangkah lebih jauh: <strong>dari sekadar bertahan, menjadi berkembang dan berkembang.</strong> Adaptasi yang sukses bukan hanya tentang merasa nyaman, tetapi tentang membangun fondasi yang kuat untuk pertumbuhan pribadi dan sosial.</p>
+                
+                <div class="highlight-box">
+                    <h4>📌 FASE BERIKUTNYA DALAM ADAPTASI</h4>
+                    <p>Setelah melewati fase awal (orientasi dan penyesuaian dasar), siswa memasuki fase <strong>integrasi sosial</strong>—saat di mana mereka mulai membangun identitas baru, membentuk hubungan yang bermakna, dan mengembangkan kepercayaan diri di lingkungan sekolah.</p>
+                </div>
+                
+                <p>Proses ini memerlukan keterampilan sosial yang matang, kecerdasan emosional, dan keberanian untuk membuka diri kepada orang lain. Mari kita pelajari bagaimana melakukannya.</p>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>B</span> Landasan Teori Pendukung</h3>
+                <p>Proses membangun jejaring sosial dan kepercayaan diri dapat dipahami melalui beberapa teori psikologi yang relevan:</p>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 1rem;">
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">1. Teori Kebutuhan Dasar Maslow (1943):</strong> Dalam hierarki kebutuhan Maslow, setelah kebutuhan fisiologis dan rasa aman terpenuhi, manusia membutuhkan <strong>rasa memiliki dan kasih sayang</strong> (belongingness and love needs). Pertemanan, penerimaan sosial, dan hubungan interpersonal yang hangat adalah fondasi untuk mencapai aktualisasi diri.</li>
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">2. Teori Kecerdasan Emosional Goleman (1995):</strong> Goleman mengidentifikasi lima komponen kecerdasan emosional: <em>self-awareness</em> (kesadaran diri), <em>self-regulation</em> (pengaturan diri), <em>motivation</em> (motivasi), <em>empathy</em> (empati), dan <em>social skills</em> (keterampilan sosial). Keterampilan sosial yang baik adalah kunci untuk membangun hubungan yang sehat.</li>
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">3. Teori Dinamika Kelompok Lewin (1947):</strong> Kelompok memiliki pengaruh kuat terhadap perilaku individu. Bergabung dengan kelompok yang positif (seperti ekstrakurikuler atau kelompok belajar) dapat mempercepat proses adaptasi dan pengembangan diri.</li>
+                    <li><strong style="color: var(--gold);">4. Teori Identitas Sosial Tajfel & Turner (1979):</strong> Individu membentuk identitas diri berdasarkan keanggotaan mereka dalam kelompok sosial. Di sekolah baru, siswa mencari kelompok yang sesuai dengan nilai dan minat mereka untuk membangun identitas positif.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>C</span> Membangun Kepercayaan Diri di Sekolah Baru</h3>
+                <p>Kepercayaan diri adalah modal utama untuk berhasil beradaptasi dan berkembang di lingkungan baru. Berikut adalah strategi untuk membangunnya:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Strategi</th>
+                            <th>Penjelasan & Contoh Praktis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">1. Kenali Kekuatan Diri</strong></td>
+                            <td>Identifikasi kelebihan dan bakat yang kamu miliki. <br><em>Contoh: Jika kamu pandai menggambar, ikuti lomba poster atau bergabung dengan klub seni.</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">2. Tetapkan Target Kecil</strong></td>
+                            <td>Mulai dengan tujuan yang realistis dan achievable. <br><em>Contoh: "Minggu ini, saya akan berkenalan dengan 3 teman baru" atau "Saya akan bertanya sekali di kelas."</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">3. Terima Ketidaksempurnaan</strong></td>
+                            <td>Tidak apa-apa membuat kesalahan. Itu bagian dari proses belajar. <br><em>Contoh: Jika kamu salah menjawab di kelas, anggap itu sebagai kesempatan belajar, bukan kegagalan.</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">4. Berani Keluar dari Zona Nyaman</strong></td>
+                            <td>Coba hal-hal baru yang menantang, meski terasa menakutkan. <br><em>Contoh: Berani presentasi di depan kelas, atau ikut audisi untuk peran dalam drama sekolah.</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">5. Rayakan Pencapaian Kecil</strong></td>
+                            <td>Apresiasi diri sendiri untuk setiap kemajuan, sekecil apa pun. <br><em>Contoh: Setelah berhasil berbicara di depan kelas, beri diri sendiri pujian atau hadiah kecil.</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Studi Kasus Mini: Kisah Budi</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Budi adalah siswa yang pendiam dan pemalu. Di MTsN 10 Agam, ia merasa kesulitan untuk berbicara di depan kelas. Namun, Budi menyadari bahwa ia memiliki bakat menulis puisi. Ia memutuskan untuk bergabung dengan klub literasi sekolah. Di sana, ia menemukan teman-teman yang memiliki minat sama. Awalnya, Budi hanya membaca puisinya di kelompok kecil. Lama-kelamaan, ia memberanikan diri untuk membacakan puisinya di depan seluruh anggota klub. Setelah beberapa bulan, Budi bahkan mewakili sekolah dalam lomba menulis puisi tingkat kabupaten. <strong>Kunci keberhasilan Budi:</strong> Ia menemukan komunitas yang mendukung, memulai dari langkah kecil, dan secara bertahap membangun kepercayaan dirinya.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>D</span> Keterampilan Sosial yang Perlu Dikembangkan</h3>
+                <p>Untuk membangun jejaring sosial yang sehat, siswa perlu mengembangkan beberapa keterampilan sosial berikut:</p>
+                
+                <div class="highlight-box">
+                    <h4>1. Komunikasi Efektif</h4>
+                    <p>Kemampuan menyampaikan pikiran dan perasaan dengan jelas, serta mendengarkan orang lain dengan aktif.</p>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Gunakan bahasa yang sopan dan jelas.</li>
+                        <li>Pertahankan kontak mata saat berbicara.</li>
+                        <li>Dengarkan tanpa memotong pembicaraan.</li>
+                        <li>Berikan respon yang menunjukkan pemahaman.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>2. Empati dan Pengertian</h4>
+                    <p>Kemampuan memahami dan merasakan apa yang dialami orang lain.</p>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Coba lihat situasi dari sudut pandang orang lain.</li>
+                        <li>Tunjukkan kepedulian dengan bertanya, "Apakah kamu baik-baik saja?"</li>
+                        <li>Hindari menghakimi atau memberi nasihat tanpa diminta.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>3. Kerja Sama dan Kolaborasi</h4>
+                    <p>Kemampuan bekerja bersama orang lain untuk mencapai tujuan bersama.</p>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Bersedia berbagi tugas dan tanggung jawab.</li>
+                        <li>Hargai pendapat dan kontribusi orang lain.</li>
+                        <li>Selesaikan konflik dengan cara yang konstruktif.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>4. Asertivitas (Ketegasan Positif)</h4>
+                    <p>Kemampuan menyampaikan pendapat atau menolak dengan sopan tanpa menyakiti orang lain.</p>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Gunakan kalimat "Saya merasa..." daripada menyalahkan orang lain.</li>
+                        <li>Berani mengatakan "tidak" jika diminta melakukan hal yang salah.</li>
+                        <li>Pertahankan hak diri sendiri sambil menghormati hak orang lain.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>E</span> Membangun Jejaring Pertemanan yang Sehat</h3>
+                <p>Teman sebaya memiliki pengaruh besar dalam kehidupan siswa. Oleh karena itu, penting untuk membangun pertemanan yang positif dan suportif. Berikut adalah ciri-ciri pertemanan yang sehat vs. tidak sehat:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th style="color: var(--success);">✅ Pertemanan Sehat</th>
+                            <th style="color: var(--error);">❌ Pertemanan Tidak Sehat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Saling Menghormati</strong></td>
+                            <td>Menghargai perbedaan pendapat dan batasan pribadi.</td>
+                            <td>Sering mengejek, merendahkan, atau memaksa.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Dukungan Emosional</strong></td>
+                            <td>Saling mendukung saat susah dan senang.</td>
+                            <td>Hanya ada saat butuh, atau justru menjatuhkan.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Komunikasi Terbuka</strong></td>
+                            <td>Bisa berbicara jujur tanpa takut dihakimi.</td>
+                            <td>Sering terjadi kesalahpahaman atau gosip.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Pertumbuhan Bersama</strong></td>
+                            <td>Saling memotivasi untuk menjadi lebih baik.</td>
+                            <td>Mendorong perilaku negatif atau malas.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">Keseimbangan</strong></td>
+                            <td>Hubungan timbal balik, saling memberi dan menerima.</td>
+                            <td>Satu pihak selalu mengorbankan diri.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <h4>💡 Tips Membangun Pertemanan yang Sehat</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li><strong>Jadilah pendengar yang baik:</strong> Teman yang baik tahu kapan harus berbicara dan kapan harus mendengarkan.</li>
+                        <li><strong>Tunjukkan apresiasi:</strong> Ucapkan terima kasih dan puji teman atas kebaikan mereka.</li>
+                        <li><strong>Berbagi minat:</strong> Bergabunglah dengan klub atau ekstrakurikuler yang sesuai dengan minatmu untuk bertemu orang-orang yang sepemikiran.</li>
+                        <li><strong>Jaga kepercayaan:</strong> Jangan menyebarkan rahasia atau gosip tentang teman.</li>
+                        <li><strong>Berani meminta maaf:</strong> Jika kamu melakukan kesalahan, akui dan minta maaf dengan tulus.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>F</span> Mengatasi Kesepian dan Isolasi Sosial</h3>
+                <p>Beberapa siswa mungkin masih merasa kesepian atau terisolasi meski sudah berusaha beradaptasi. Ini adalah hal yang wajar, terutama di bulan-bulan pertama. Berikut adalah strategi untuk mengatasinya:</p>
+                
+                <div class="highlight-box">
+                    <h4>1. Akui Perasaanmu</h4>
+                    <p>Tidak apa-apa merasa kesepian. Itu adalah emosi yang valid. Jangan menyalahkan diri sendiri atau merasa ada yang salah dengan dirimu.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>2. Ambil Inisiatif Kecil</h4>
+                    <p>Mulai dengan langkah kecil: sapa teman sebangku, ajak teman makan bersama di kantin, atau tanyakan tugas kepada teman.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>3. Ikut Kegiatan Ekstrakurikuler</h4>
+                    <p>Ekstrakurikuler adalah tempat terbaik untuk bertemu orang-orang dengan minat yang sama. Pilihlah kegiatan yang benar-benar kamu sukai.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>4. Cari Dukungan Profesional</h4>
+                    <p>Jika rasa kesepian berlanjut dan mengganggu kehidupan sehari-hari, jangan ragu untuk berkonsultasi dengan Guru BK. Mereka dapat membantu kamu menemukan strategi yang lebih personal.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Contoh Nyata: Kegiatan yang Bisa Diikuti</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Di MTsN 10 Agam, tersedia berbagai ekstrakurikuler seperti Pramuka, PMR, Rohis, Basket, Voli, Seni Kaligrafi, dan Klub Literasi. Masing-masing kegiatan ini menawarkan kesempatan untuk bertemu teman baru, mengembangkan keterampilan, dan merasa menjadi bagian dari sesuatu yang lebih besar.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>G</span> Peran BK dalam Membangun Jejaring Sosial</h3>
+                <p>Guru BK memiliki peran penting dalam memfasilitasi pembangunan jejaring sosial siswa. Berikut adalah beberapa layanan yang relevan:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Layanan BK</th>
+                            <th>Bentuk Kegiatan</th>
+                            <th>Manfaat bagi Siswa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Bimbingan Kelompok</strong></td>
+                            <td>Diskusi kelompok tentang keterampilan sosial, komunikasi, dan resolusi konflik.</td>
+                            <td>Siswa belajar dari pengalaman teman sebaya dan berlatih keterampilan sosial dalam lingkungan yang aman.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Konseling Individual</strong></td>
+                            <td>Sesi tatap muka untuk siswa yang mengalami kesulitan spesifik dalam bergaul atau membangun kepercayaan diri.</td>
+                            <td>Siswa mendapatkan perhatian personal dan strategi yang disesuaikan dengan kebutuhan mereka.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Peer Counseling (Konseling Sebaya)</strong></td>
+                            <td>Melatih siswa senior atau terpilih menjadi "konselor sebaya" yang dapat membantu teman-temannya.</td>
+                            <td>Siswa merasa lebih nyaman berbicara dengan teman sebaya, dan konselor sebaya mengembangkan keterampilan kepemimpinan.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Kegiatan Team Building</strong></td>
+                            <td>Outbound, permainan kelompok, atau proyek kolaboratif antar siswa.</td>
+                            <td>Membangun rasa solidaritas, kerja sama, dan kepercayaan antar siswa.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>H</span> Referensi Pendukung</h3>
+                <p>Materi ini disusun berdasarkan landasan akademis dan penelitian yang relevan:</p>
+                <ul class="reference-list">
+                    <li>Maslow, A. H. (1943). <em>A Theory of Human Motivation</em>. Psychological Review, 50(4), 370–396.</li>
+                    <li>Goleman, D. (1995). <em>Emotional Intelligence: Why It Can Matter More Than IQ</em>. New York: Bantam Books.</li>
+                    <li>Lewin, K. (1947). <em>Frontiers in Group Dynamics: Concept, Method and Reality in Social Science</em>. Human Relations, 1(1), 5-41.</li>
+                    <li>Tajfel, H., & Turner, J. C. (1979). <em>An Integrative Theory of Intergroup Conflict</em>. In W. G. Austin & S. Worchel (Eds.), The Social Psychology of Intergroup Relations. Monterey, CA: Brooks/Cole.</li>
+                    <li>Prayitno & Erman Amti. (2004). <em>Dasar-Dasar Bimbingan dan Konseling</em>. Jakarta: Rineka Cipta.</li>
+                    <li>Modul Pelatihan Guru Implementasi Kurikulum Merdeka: Bimbingan dan Konseling. Kemendikbudristek, 2022.</li>
+                </ul>
+            </section>
+
+            <!-- Islamic Quote -->
+            <div class="islamic-quote">
+                <div class="arabic">يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُم مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَاكُمْ شُعُوبًا وَقَبَائِلَ لِتَعَارَفُوا</div>
+                <p class="translation">"Wahai manusia! Sungguh, Kami telah menciptakan kamu dari seorang laki-laki dan seorang perempuan, kemudian Kami jadikan kamu berbangsa-bangsa dan bersuku-suku agar kamu saling mengenal."</p>
+                <p style="color: var(--gold); margin-top: 1rem; font-weight: 600;">— QS. Al-Hujurat [49]: 13</p>
+            </div>
+
+            <!-- Interactive Formative Test -->
+            <div class="quiz-container" id="quiz-section">
+                <div class="quiz-header">
+                    <h2>📝 Uji Formatif Pertemuan 3</h2>
+                    <p style="color: var(--text-secondary);">Adaptasi Lanjutan: Jejaring Sosial & Kepercayaan Diri | Skor Maksimal: 200</p>
+                </div>
+
+                <form id="formatifForm">
+                    <!-- Identitas -->
+                    <div class="content-section" style="margin-bottom: 2rem; border-color: var(--gold);">
+                        <h3 style="color: var(--gold); margin-bottom: 1.5rem; font-family: 'Inter', sans-serif; font-size: 1.1rem;">📋 Identitas Siswa</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Lengkap *</label>
+                                <input type="text" id="nama" class="form-control" required placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label>No. Absen / NIS *</label>
+                                <input type="text" id="nis" class="form-control" required placeholder="Contoh: 05 / 12345">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tanggal Ujian *</label>
+                                <input type="date" id="tanggal" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Kelas *</label>
+                                <select id="kelas" class="form-control" required>
+                                    <option value="">Pilih Kelas</option>
+                                    <option value="VII-A">VII-A</option>
+                                    <option value="VII-B">VII-B</option>
+                                    <option value="VII-C">VII-C</option>
+                                    <option value="VII-D">VII-D</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bagian A: Pilihan Ganda -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">📋 Bagian A: Pilihan Ganda (10 Soal x 10 Poin)</h3>
+                    
+                    <div class="question-block">
+                        <p class="question-text">1. Menurut Teori Kebutuhan Dasar Maslow, setelah kebutuhan fisiologis dan rasa aman terpenuhi, kebutuhan berikutnya adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q1" value="A"> A. Kebutuhan akan penghargaan (esteem needs)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="B"> B. Rasa memiliki dan kasih sayang (belongingness and love needs)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="C"> C. Aktualisasi diri (self-actualization)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="D"> D. Kebutuhan kognitif</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Menurut Goleman, komponen kecerdasan emosional yang berkaitan dengan kemampuan memahami perasaan orang lain adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q2" value="A"> A. Self-awareness (Kesadaran diri)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="B"> B. Self-regulation (Pengaturan diri)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="C"> C. Empathy (Empati)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="D"> D. Motivation (Motivasi)</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Strategi membangun kepercayaan diri dengan menetapkan tujuan kecil dan realistis disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q3" value="A"> A. Self-actualization</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="B"> B. Goal setting (Penetapan目标)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="C"> C. Avoidance coping</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="D"> D. Denial</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Kemampuan menyampaikan pendapat atau menolak dengan sopan tanpa menyakiti orang lain disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q4" value="A"> A. Agresivitas</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="B"> B. Pasivitas</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="C"> C. Asertivitas</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="D"> D. Manipulasi</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Menurut Teori Identitas Sosial Tajfel & Turner, individu membentuk identitas diri berdasarkan... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q5" value="A"> A. Kekayaan dan status sosial</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="B"> B. Keanggotaan dalam kelompok sosial</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="C"> C. Penampilan fisik semata</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="D"> D. Nilai rapor di sekolah</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">6. Manakah yang BUKAN merupakan ciri pertemanan yang sehat? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q6" value="A"> A. Saling menghormati dan mendukung</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="B"> B. Komunikasi terbuka dan jujur</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="C"> C. Sering mengejek dan merendahkan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="D"> D. Saling memotivasi untuk berkembang</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">7. Jika seorang siswa merasa kesepian dan terisolasi di sekolah baru, langkah terbaik yang sebaiknya dilakukan adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q7" value="A"> A. Menarik diri dan tidak berbicara dengan siapa pun</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="B"> B. Mengambil inisiatif kecil seperti menyapa teman sebangku atau bergabung dengan ekstrakurikuler</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="C"> C. Memaksa teman untuk berteman dengannya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="D"> D. Marah-marah kepada guru dan teman</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">8. Menurut Teori Dinamika Kelompok Lewin, bergabung dengan kelompok yang positif (seperti ekstrakurikuler) dapat... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q8" value="A"> A. Memperlambat proses adaptasi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="B"> B. Mempercepat adaptasi dan pengembangan diri</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="C"> C. Membuat siswa kehilangan jati diri</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="D"> D. Tidak ada pengaruh sama sekali</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">9. Layanan BK yang melatih siswa senior menjadi "konselor sebaya" untuk membantu teman-temannya disebut... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q9" value="A"> A. Konseling Individual</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="B"> B. Bimbingan Kelompok</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="C"> C. Peer Counseling (Konseling Sebaya)</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="D"> D. Mediasi</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">10. Kunci keberhasilan Budi dalam studi kasus adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q10" value="A"> A. Ia menunggu sampai teman-teman mendekatinya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="B"> B. Ia menemukan komunitas yang mendukung, memulai dari langkah kecil, dan secara bertahap membangun kepercayaan diri</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="C"> C. Ia mengabaikan perasaannya dan fokus belajar saja</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="D"> D. Ia sering membolos agar tidak stres</label></li>
+                        </ul>
+                    </div>
+
+                    <!-- Bagian B: Essay -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">✍️ Bagian B: Essay (5 Soal x 20 Poin)</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">*Sistem akan melakukan estimasi skor berdasarkan kata kunci jawaban. Penilaian akhir tetap berada di tangan Guru.</p>
+
+                    <div class="question-block">
+                        <p class="question-text">1. Jelaskan apa yang dimaksud dengan "fase integrasi sosial" dalam proses adaptasi di sekolah baru! Mengapa fase ini penting? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay1" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Sebutkan dan jelaskan 3 dari 5 komponen kecerdasan emosional menurut Goleman! Bagaimana masing-masing komponen membantu dalam membangun hubungan sosial? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay2" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Jelaskan perbedaan antara pertemanan yang sehat dan tidak sehat! Berikan masing-masing dua contoh konkret! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay3" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Apa yang dimaksud dengan asertivitas? Jelaskan perbedaan antara perilaku asertif, agresif, dan pasif! Berikan contoh situasi di sekolah! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay4" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Ceritakan pengalaman pribadi Anda dalam membangun pertemanan di MTsN 10 Agam! Apa tantangan yang Anda hadapi dan bagaimana cara Anda mengatasinya? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay5" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="button" class="btn btn-primary" onclick="calculateScore()">📊 KIRIM JAWABAN & LIHAT HASIL</button>
+                    </div>
+                </form>
+
+                <!-- Results Panel -->
+                <div id="resultsPanel" class="results-panel">
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">✅ Uji Formatif Selesai!</h3>
+                    <p style="color: var(--text-secondary);">Berikut adalah ringkasan hasil penilaian Anda:</p>
+                    
+                    <div class="score-grid">
+                        <div class="score-box">
+                            <h4>Pilihan Ganda</h4>
+                            <div class="value" id="scorePG">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Essay (Estimasi)</h4>
+                            <div class="value" id="scoreEssay">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Skor Akhir</h4>
+                            <div class="value" id="scoreTotal">0</div>
+                        </div>
+                    </div>
+
+                    <div id="essayFeedback" style="text-align: left; background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border-gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 1rem;">💡 Catatan Penilaian Essay:</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Skor essay di atas adalah <strong>estimasi otomatis</strong> berdasarkan deteksi kata kunci dan panjang jawaban. Guru akan melakukan verifikasi ulang terhadap substansi jawaban Anda untuk mendapatkan nilai resmi.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="downloadPDF()">📄 Unduh PDF Lengkap</button>
+                        <button class="btn btn-secondary" onclick="downloadTXT()">📥 Unduh Skor (TXT)</button>
+                        <button class="btn btn-outline" onclick="sendEmail()">📧 Kirim ke Email Guru</button>
+                        <button class="btn btn-secondary" onclick="resetForm()">🔄 Mulai Ulang</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p class="luxury-font" style="font-size: 1.2rem; color: var(--gold); margin-bottom: 1rem;">MTsN 10 Agam</p>
+            <p>&copy; 2026 Tika Ramadhani S.Pd. Hak Cipta Dilindungi Undang-Undang.</p>
+            <p style="margin-top: 0.5rem;">Email: <a href="mailto:tikaramadhani41@gmail.com">tikaramadhani41@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const correctAnswers = {
+            q1: 'B', q2: 'C', q3: 'B', q4: 'C', q5: 'B',
+            q6: 'C', q7: 'B', q8: 'B', q9: 'C', q10: 'B'
+        };
+
+        // Kata kunci untuk estimasi penilaian essay
+        const essayKeywords = {
+            essay1: ['integrasi', 'sosial', 'identitas', 'hubungan', 'penting', 'berkembang'],
+            essay2: ['goleman', 'self-awareness', 'empathy', 'social skills', 'emosi', 'hubungan'],
+            essay3: ['sehat', 'tidak sehat', 'menghormati', 'mengejek', 'dukungan', 'contoh'],
+            essay4: ['asertif', 'agresif', 'pasif', 'sopan', 'tegas', 'contoh'],
+            essay5: ['pengalaman', 'pertemanan', 'tantangan', 'mengatasi', 'solusi', 'teman', 'ekstrakurikuler']
+        };
+
+        let finalScores = { pg: 0, essay: 0, total: 0 };
+
+        function calculateScore() {
+            // Validasi form
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            if (!nama || !nis) {
+                alert('Harap lengkapi Identitas Siswa (Nama dan NIS) terlebih dahulu!');
+                return;
+            }
+
+            // Hitung PG
+            let pgScore = 0;
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Hitung Estimasi Essay
+            let essayScore = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                const answer = document.getElementById(`essay${i}`).value.toLowerCase();
+                const keywords = essayKeywords[`essay${i}`];
+                let matchCount = 0;
+                
+                keywords.forEach(keyword => {
+                    if (answer.includes(keyword)) matchCount++;
+                });
+
+                if (answer.length > 15) {
+                    if (matchCount >= 2) essayScore += 20;
+                    else if (matchCount >= 1) essayScore += 10;
+                    else essayScore += 5;
+                }
+            }
+
+            finalScores = {
+                pg: pgScore,
+                essay: essayScore,
+                total: pgScore + essayScore
+            };
+
+            // Tampilkan hasil
+            document.getElementById('scorePG').textContent = finalScores.pg;
+            document.getElementById('scoreEssay').textContent = finalScores.essay;
+            document.getElementById('scoreTotal').textContent = finalScores.total;
+            
+            document.getElementById('resultsPanel').classList.add('show');
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('quiz-section');
+            const nama = document.getElementById('nama').value || 'Siswa';
+            const opt = {
+                margin: 10,
+                filename: `Uji_Formatif_P3_${nama.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, backgroundColor: '#0a0e17' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function downloadTXT() {
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            const kelas = document.getElementById('kelas').value;
+            const tanggal = document.getElementById('tanggal').value;
+            
+            const content = `=== HASIL UJI FORMATIF BK ===\n` +
+                           `Pertemuan 3: Adaptasi Lanjutan - Jejaring Sosial & Kepercayaan Diri\n` +
+                           `MTsN 10 Agam | Tahun Pelajaran 2026/2027\n\n` +
+                           `Nama: ${nama}\n` +
+                           `NIS: ${nis}\n` +
+                           `Kelas: ${kelas}\n` +
+                           `Tanggal: ${tanggal}\n\n` +
+                           `--- SKOR ---\n` +
+                           `Pilihan Ganda: ${finalScores.pg} / 100\n` +
+                           `Essay (Estimasi): ${finalScores.essay} / 100\n` +
+                           `TOTAL SKOR: ${finalScores.total} / 200\n\n` +
+                           `Catatan: Skor essay adalah estimasi otomatis. Verifikasi guru diperlukan.\n` +
+                           `Dikirim ke: tikaramadhani41@gmail.com`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Skor_BK_P3_${nama.replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function sendEmail() {
+            const nama = document.getElementById('nama').value;
+            const kelas = document.getElementById('kelas').value;
+            const total = finalScores.total;
+            
+            const subject = encodeURIComponent(`Hasil Uji Formatif BK Pertemuan 3 - ${nama} (${kelas})`);
+            const body = encodeURIComponent(`Yth. Ibu Tika Ramadhani S.Pd,\n\nBerikut adalah hasil uji formatif saya:\n\nNama: ${nama}\nKelas: ${kelas}\nSkor Total: ${total}/200\n(PG: ${finalScores.pg}, Essay: ${finalScores.essay})\n\nTerima kasih.\n\n*File detail telah diunduh secara terpisah.*`);
+            
+            window.location.href = `mailto:tikaramadhani41@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        function resetForm() {
+            if (confirm('Apakah Anda yakin ingin mengosongkan semua jawaban dan mulai ulang?')) {
+                document.getElementById('formatifForm').reset();
+                document.getElementById('resultsPanel').classList.remove('show');
+                finalScores = { pg: 0, essay: 0, total: 0 };
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>

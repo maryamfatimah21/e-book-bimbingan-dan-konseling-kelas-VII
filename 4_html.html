@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 4: Tata Tertib di Madrasah | Bimbingan dan Konseling Kelas VII</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- html2pdf.js untuk fitur Unduh PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-input: rgba(255, 255, 255, 0.05);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-gold: rgba(212, 175, 55, 0.2);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .luxury-font { font-family: 'Playfair Display', serif; }
+
+        .container { max-width: 950px; margin: 0 auto; padding: 2rem; }
+
+        /* Navigation */
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-gold);
+            margin-bottom: 3rem;
+        }
+
+        .nav-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover { color: var(--gold-light); transform: translateX(-3px); }
+        .nav-link.next:hover { transform: translateX(3px); }
+
+        /* Hero / Header Section */
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-gold);
+        }
+
+        .chapter-header h1 {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .chapter-header p {
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        .author-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-gold);
+            padding-top: 1.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .author-meta strong { color: var(--gold); }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title span {
+            background: var(--gold);
+            color: var(--bg-dark);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 { color: var(--gold-light); margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        .example-box h4 { color: var(--success); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        .warning-box h4 { color: var(--error); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* Tables */
+        .luxury-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .luxury-table th, .luxury-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-gold);
+            text-align: left;
+        }
+        .luxury-table th {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .luxury-table tr:hover { background: rgba(255, 255, 255, 0.02); }
+        .luxury-table td { color: var(--text-secondary); }
+
+        /* References */
+        .reference-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .reference-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .reference-list li::before {
+            content: '📚';
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .islamic-quote {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .islamic-quote .arabic {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-family: 'Traditional Arabic', serif;
+        }
+
+        .islamic-quote .translation {
+            font-style: italic;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form & Quiz Styles */
+        .quiz-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .quiz-header { text-align: center; margin-bottom: 2.5rem; }
+        .quiz-header h2 { color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem; }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: var(--gold-light); margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .question-block { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-gold); }
+        .question-block:last-child { border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); font-size: 1.05rem; }
+        .question-points { float: right; background: var(--gold); color: var(--bg-dark); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
+
+        .options-list { list-style: none; }
+        .options-list li { margin-bottom: 0.75rem; }
+        .option-label {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem;
+            background: var(--bg-input); border: 1px solid transparent; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .option-label:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+        input[type="radio"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+
+        /* Results Section */
+        .results-panel {
+            display: none; background: rgba(16, 185, 129, 0.05); border: 1px solid var(--success);
+            border-radius: 12px; padding: 2rem; margin-top: 2rem; text-align: center;
+        }
+        .results-panel.show { display: block; animation: fadeInUp 0.5s ease; }
+
+        .score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .score-box { background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-gold); }
+        .score-box h4 { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+        .score-box .value { font-size: 2rem; font-weight: 700; color: var(--gold); font-family: 'Playfair Display', serif; }
+
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .btn {
+            padding: 0.875rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; border: none; font-size: 0.95rem; display: inline-flex;
+            align-items: center; gap: 0.5rem; text-decoration: none;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%); color: var(--bg-dark); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .btn-secondary { background: var(--bg-input); color: var(--text-primary); border: 1px solid var(--border-gold); }
+        .btn-secondary:hover { background: rgba(212, 175, 55, 0.1); border-color: var(--gold); }
+        .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+        .btn-outline:hover { background: var(--gold); color: var(--bg-dark); }
+
+        footer { text-align: center; padding: 3rem 0; margin-top: 4rem; border-top: 1px solid var(--border-gold); color: var(--text-secondary); font-size: 0.9rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .form-row, .score-grid { grid-template-columns: 1fr; }
+            .chapter-header h1 { font-size: 1.8rem; }
+            .action-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .luxury-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav-header">
+            <a href="3.html" class="nav-link">← Pertemuan 3: Adaptasi Lanjutan</a>
+            <a href="5.html" class="nav-link next">Pertemuan 5: Pohon Keluarga →</a>
+        </nav>
+
+        <!-- Chapter Header -->
+        <header class="chapter-header">
+            <div class="chapter-badge">PERTEMUAN KE-4</div>
+            <h1>Tata Tertib di Madrasah</h1>
+            <p>Memahami makna tata tertib bukan sebagai beban, melainkan sebagai pondasi pembentukan karakter, kedisiplinan, dan budaya madrasah yang bermartabat.</p>
+            
+            <div class="author-meta">
+                <div>
+                    <strong>Tika Ramadhani S.Pd</strong><br>
+                    Guru Bimbingan dan Konseling<br>
+                    <span style="font-size: 0.8rem;">✉️ tikaramadhani41@gmail.com</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <main>
+            <section class="content-section">
+                <h3 class="section-title"><span>A</span> Mengubah Paradigma tentang Tata Tertib</h3>
+                <p>Banyak siswa menganggap tata tertib sebagai "daftar larangan" yang membatasi kebebasan mereka. <strong>Ini adalah cara pandang yang keliru.</strong> Tata tertib sebenarnya adalah <em>kontrak sosial</em> yang disepakati bersama untuk menciptakan lingkungan belajar yang aman, nyaman, kondusif, dan bermartabat bagi seluruh warga madrasah.</p>
+                
+                <div class="highlight-box">
+                    <h4>📌 DEFINISI INTI</h4>
+                    <p>Tata tertib madrasah adalah seperangkat aturan tertulis yang mengatur perilaku, sikap, dan kegiatan seluruh warga madrasah (siswa, guru, tenaga kependidikan) dalam rangka menciptakan lingkungan pendidikan yang tertib, disiplin, dan berkarakter Islami.</p>
+                </div>
+                
+                <p>Tanpa tata tertib, sebuah sekolah akan menjadi chaos—tidak ada ketertiban, tidak ada keadilan, dan proses belajar-mengajar tidak akan berjalan optimal. Oleh karena itu, mematuhi tata tertib adalah bentuk <strong>tanggung jawab moral</strong> setiap siswa terhadap dirinya sendiri, teman-temannya, dan madrasah.</p>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>B</span> Landasan Teori Pendukung</h3>
+                <p>Kedisiplinan dan kepatuhan terhadap tata tertib dapat dipahami melalui beberapa teori psikologi pendidikan yang relevan:</p>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 1rem;">
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">1. Teori Disiplin Demokratis Dreikurs (1968):</strong> Rudolf Dreikurs menekankan bahwa disiplin yang efektif bukan berdasarkan hukuman, melainkan <em>konsekuensi logis dan natural</em>. Siswa diajak memahami bahwa setiap tindakan memiliki konsekuensi, dan mereka bertanggung jawab atas pilihan yang mereka buat. Pendekatan ini membangun disiplin dari dalam (internal), bukan dari paksaan luar.</li>
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">2. Teori Perkembangan Moral Kohlberg (1984):</strong> Kohlberg mengidentifikasi enam tahap perkembangan moral. Siswa SMP umumnya berada pada tahap <em>Konvensional</em>—di mana mereka mematuhi aturan karena ingin diakui sebagai "anak baik" dan menjaga ketertiban sosial. Tugas BK adalah membantu siswa naik ke tahap <em>Post-Konvensional</em>, di mana mereka mematuhi aturan karena kesadaran moral, bukan karena takut dihukum.</li>
+                    <li style="margin-bottom: 1rem;"><strong style="color: var(--gold);">3. Teori Penguatan Skinner (Behaviorisme):</strong> Perilaku yang diberi penguatan positif (reward) akan cenderung diulang, sedangkan perilaku yang diberi konsekuensi negatif akan berkurang. Tata tertib yang baik menggunakan kombinasi penguatan positif (apresiasi, penghargaan) dan konsekuensi edukatif (pembinaan, bukan sekadar hukuman).</li>
+                    <li><strong style="color: var(--gold);">4. Teori Locus of Control Rotter (1966):</strong> Siswa dengan <em>internal locus of control</em> percaya bahwa keberhasilan dan kegagalan mereka ditentukan oleh usaha sendiri, bukan oleh faktor eksternal. Tata tertib yang internalisasi-nya baik akan membentuk siswa dengan internal locus of control yang kuat.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>C</span> Tujuan dan Fungsi Tata Tertib</h3>
+                <p>Tata tertib madrasah memiliki beberapa tujuan dan fungsi penting:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Tujuan/Fungsi</th>
+                            <th>Penjelasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">1. Menciptakan Ketertiban</strong></td>
+                            <td>Menjamin seluruh warga madrasah berperilaku sesuai norma dan nilai yang berlaku, sehingga kegiatan belajar-mengajar berjalan lancar.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">2. Membentuk Karakter</strong></td>
+                            <td>Membiasakan siswa bersikap disiplin, tanggung jawab, jujur, dan hormat—nilai-nilai yang akan membentuk karakter mulia.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">3. Menjamin Keadilan</strong></td>
+                            <td>Semua siswa diperlakukan sama di hadapan aturan, tanpa pandang bulu. Ini menciptakan rasa adil dan kepercayaan.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">4. Melindungi Hak Siswa</strong></td>
+                            <td>Tata tertib melindungi hak setiap siswa untuk belajar dengan tenang, aman, dan nyaman tanpa gangguan.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold-light);">5. Membangun Budaya Madrasah</strong></td>
+                            <td>Aturan yang konsisten membentuk budaya madrasah yang positif, Islami, dan berprestasi.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>D</span> Jenis-Jenis Tata Tertib di MTsN 10 Agam</h3>
+                <p>Tata tertib madrasah mencakup berbagai aspek kehidupan siswa. Berikut adalah kategori utamanya:</p>
+                
+                <div class="highlight-box">
+                    <h4>1. Tata Tertib Akademik</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Mengikuti kegiatan belajar-mengajar dengan tertib dan penuh perhatian.</li>
+                        <li>Mengerjakan tugas dan PR tepat waktu.</li>
+                        <li>Membawa buku dan peralatan belajar yang diperlukan.</li>
+                        <li>Tidak mencontek atau melakukan kecurangan akademik.</li>
+                        <li>Mengikuti ujian dengan jujur dan mandiri.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>2. Tata Tertib Kehadiran</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Hadir di madrasah sebelum bel masuk berbunyi (pukul 07.00 WIB).</li>
+                        <li>Tidak meninggalkan madrasah selama jam pelajaran tanpa izin.</li>
+                        <li>Jika berhalangan hadir, wajib menyertakan surat izin dari orang tua/wali.</li>
+                        <li>Tidak membolos atau titip absen.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>3. Tata Tertib Berpakaian dan Berpenampilan</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Mengenakan seragam madrasah dengan rapi dan sesuai ketentuan.</li>
+                        <li>Memakai atribut sekolah (topi, dasi, badge) pada hari yang ditentukan.</li>
+                        <li>Rambut rapi, tidak diwarnai, dan tidak bermodel aneh.</li>
+                        <li>Tidak menggunakan perhiasan berlebihan atau makeup mencolok.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>4. Tata Tertib Perilaku dan Sopan Santun</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Menghormati guru, tenaga kependidikan, dan sesama siswa.</li>
+                        <li>Tidak melakukan perundungan (bullying) dalam bentuk apa pun.</li>
+                        <li>Tidak membawa, menggunakan, atau mengedarkan rokok, narkoba, atau minuman keras.</li>
+                        <li>Tidak melakukan perbuatan asusila atau pelanggaran hukum.</li>
+                        <li>Menjaga lisan dan tulisan, termasuk di media sosial.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>5. Tata Tertib Kebersihan dan Kerapian</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        <li>Membuang sampah pada tempatnya dan memilah sampah organik/anorganik.</li>
+                        <li>Menjaga kebersihan kelas, toilet, dan lingkungan madrasah.</li>
+                        <li>Ikut serta dalam kegiatan piket kelas sesuai jadwal.</li>
+                        <li>Tidak mencoret-coret fasilitas madrasah.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>E</span> Hak dan Kewajiban Siswa</h3>
+                <p>Setiap siswa memiliki hak dan kewajiban yang seimbang. Memahami keduanya adalah kunci menjadi siswa yang bertanggung jawab.</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%; color: var(--success);">✅ Hak Siswa</th>
+                            <th style="color: var(--gold-light);">📋 Kewajiban Siswa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mendapatkan pengajaran dan bimbingan dari guru.</td>
+                            <td>Mengikuti kegiatan belajar dengan sungguh-sungguh.</td>
+                        </tr>
+                        <tr>
+                            <td>Menggunakan fasilitas madrasah sesuai peruntukkannya.</td>
+                            <td>Menjaga dan merawat fasilitas madrasah.</td>
+                        </tr>
+                        <tr>
+                            <td>Memperoleh perlakuan yang adil dan tidak diskriminatif.</td>
+                            <td>Menghormati guru, staf, dan sesama siswa.</td>
+                        </tr>
+                        <tr>
+                            <td>Mendapat perlindungan dari perundungan dan kekerasan.</td>
+                            <td>Tidak melakukan perundungan atau kekerasan dalam bentuk apa pun.</td>
+                        </tr>
+                        <tr>
+                            <td>Menyampaikan pendapat secara sopan dan konstruktif.</td>
+                            <td>Mematuhi tata tertib dan aturan madrasah.</td>
+                        </tr>
+                        <tr>
+                            <td>Memperoleh layanan bimbingan dan konseling.</td>
+                            <td>Bersikap jujur dan terbuka dalam proses bimbingan.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>F</span> Konsekuensi Pelanggaran: Pembinaan, Bukan Sekadar Hukuman</h3>
+                <p>Ketika siswa melanggar tata tertib, madrasah tidak semata-mata menjatuhkan hukuman, melainkan melakukan <strong>pembinaan</strong> agar siswa menyadari kesalahannya dan berubah menjadi lebih baik. Berikut adalah tingkatan pembinaan sesuai berat-ringannya pelanggaran:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Tingkatan</th>
+                            <th style="width: 30%;">Jenis Pelanggaran</th>
+                            <th>Bentuk Pembinaan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--success);">Ringan</strong></td>
+                            <td>Terlambat masuk kelas, tidak memakai atribut, tidak mengerjakan PR, rambut tidak rapi.</td>
+                            <td>Teguran lisan, poin pelanggaran dicatat, tugas refleksi diri, panggilan orang tua (jika berulang).</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Sedang</strong></td>
+                            <td>Membolos, merokok di lingkungan madrasah, berkelahi ringan, tidak mengikuti upacara.</td>
+                            <td>Pemanggilan orang tua, surat peringatan (SP 1-2), pembinaan oleh Guru BK, tugas sosial (misal: membersihkan madrasah).</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--error);">Berat</strong></td>
+                            <td>Membawa/mengedarkan narkoba, melakukan asusila, mencuri, melakukan perundungan berat, merusak fasilitas madrasah.</td>
+                            <td>Skorsing, surat peringatan terakhir (SP 3), dikembalikan kepada orang tua, atau diberhentikan dari madrasah sesuai keputusan dewan guru.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="warning-box">
+                    <h4>⚠️ Catatan Penting</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Setiap pelanggaran akan dicatat dalam <strong>buku poin pelanggaran</strong>. Siswa yang mengumpulkan poin tertentu (misalnya 50 poin dalam satu semester) akan dikenakan sanksi yang lebih berat. Sistem ini dirancang agar siswa sadar bahwa setiap tindakan memiliki konsekuensi yang terukur.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Studi Kasus Mini: Kisah Ahmad</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Ahmad adalah siswa kelas VII yang sering terlambat masuk madrasah. Pada minggu pertama, ia mendapat teguran lisan dari guru piket. Minggu kedua, ia terlambat lagi dan poinnya dicatat. Minggu ketiga, ia terlambat untuk ketiga kalinya—Guru BK memanggil Ahmad untuk sesi konseling individual. Dalam sesi tersebut, Guru BK tidak memarahinya, melainkan menggali alasan: ternyata Ahmad harus mengantar adiknya ke sekolah karena ibunya sakit. Guru BK kemudian berkoordinasi dengan orang tua dan memberikan solusi: Ahmad diizinkan masuk sedikit lebih longgar selama ibunya belum sembuh, dengan syarat ia tetap mengikuti pelajaran pertama secara online dari rumah jika memungkinkan. <strong>Pelajaran:</strong> Tata tertib ditegakkan dengan tegas, tetapi juga dengan empati dan solusi.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>G</span> Peran BK dalam Penegakan Tata Tertib</h3>
+                <p>Guru BK tidak berperan sebagai "polisi sekolah", melainkan sebagai <strong>mitra pembinaan</strong> yang membantu siswa memahami dan internalisasi tata tertib. Berikut adalah peran BK:</p>
+                
+                <table class="luxury-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Peran BK</th>
+                            <th>Bentuk Kegiatan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Edukator</strong></td>
+                            <td>Memberikan pemahaman tentang makna dan pentingnya tata tertib melalui bimbingan klasikal atau kelompok.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Konselor</strong></td>
+                            <td>Melakukan konseling individual kepada siswa yang berulang kali melanggar, untuk menggali akar masalahnya.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Mediator</strong></td>
+                            <td>Menjadi jembatan antara siswa, orang tua, dan pihak madrasah dalam penyelesaian pelanggaran.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Fasilitator Perubahan</strong></td>
+                            <td>Membantu siswa menyusun rencana perubahan perilaku (behavior contract) dan memonitor perkembangannya.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--gold);">Kolaborator</strong></td>
+                            <td>Bekerja sama dengan wali kelas, guru mata pelajaran, dan orang tua untuk menciptakan lingkungan yang mendukung kedisiplinan.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>H</span> Strategi Internalisasi Tata Tertib</h3>
+                <p>Agar tata tertib tidak hanya menjadi aturan di atas kertas, siswa perlu menginternalisasinya—menjadikannya bagian dari diri. Berikut strateginya:</p>
+                
+                <div class="highlight-box">
+                    <h4>1. Pahami "MENGAPA", Bukan Hanya "APA"</h4>
+                    <p>Jangan hanya menghafal aturan, tapi pahami alasan di baliknya. Misalnya: "Mengapa dilarang terlambat?" → Karena mengganggu konsentrasi diri sendiri dan teman, serta mengurangi waktu belajar.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>2. Buat Komitmen Pribadi</h4>
+                    <p>Tuliskan komitmen diri untuk mematuhi tata tertib. Tempelkan di tempat yang sering terlihat (misalnya di meja belajar) sebagai pengingat.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>3. Cari Role Model</h4>
+                    <td>Temukan siswa senior atau teman yang disiplin, dan jadikan mereka inspirasi. Amati kebiasaan positif mereka.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>4. Bangun Kebiasaan Kecil</h4>
+                    <p>Mulai dari hal kecil: bangun pagi 30 menit lebih awal, siapkan seragam malam sebelumnya, berangkat 15 menit sebelum bel. Kebiasaan kecil akan membentuk karakter besar.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>5. Evaluasi Diri Rutin</h4>
+                    <p>Setiap akhir minggu, tanyakan pada diri sendiri: "Apakah saya sudah mematuhi tata tertib minggu ini? Apa yang bisa saya perbaiki?"</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h3 class="section-title"><span>I</span> Referensi Pendukung</h3>
+                <p>Materi ini disusun berdasarkan landasan akademis dan regulasi yang berlaku:</p>
+                <ul class="reference-list">
+                    <li>Dreikurs, R. (1968). <em>Children: The Challenge</em>. New York: Hawthorn Books.</li>
+                    <li>Kohlberg, L. (1984). <em>The Psychology of Moral Development: The Nature and Validity of Moral Stages</em>. San Francisco: Harper & Row.</li>
+                    <li>Skinner, B. F. (1953). <em>Science and Human Behavior</em>. New York: Macmillan.</li>
+                    <li>Rotter, J. B. (1966). Generalized expectancies for internal versus external control of reinforcement. <em>Psychological Monographs</em>, 80(1), 1-28.</li>
+                    <li>Peraturan Menteri Pendidikan dan Kebudayaan (Permendikbud) No. 111 Tahun 2014 tentang Bimbingan dan Konseling pada Pendidikan Dasar dan Pendidikan Menengah.</li>
+                    <li>Peraturan Menteri Pendidikan Nasional (Permendiknas) No. 39 Tahun 2008 tentang Pembinaan Kesiswaan.</li>
+                    <li>Buku Panduan Tata Tertib Siswa MTsN 10 Agam, Tahun Pelajaran 2026/2027.</li>
+                </ul>
+            </section>
+
+            <!-- Islamic Quote -->
+            <div class="islamic-quote">
+                <div class="arabic">يَا أَيُّهَا الَّذِينَ آمَنُوا أَطِيعُوا اللَّهَ وَأَطِيعُوا الرَّسُولَ وَأُولِي الْأَمْرِ مِنكُمْ</div>
+                <p class="translation">"Wahai orang-orang yang beriman! Taatilah Allah dan taatilah Rasul (Muhammad), dan Ulil Amri (pemegang kekuasaan) di antara kamu."</p>
+                <p style="color: var(--gold); margin-top: 1rem; font-weight: 600;">— QS. An-Nisa [4]: 59</p>
+            </div>
+
+            <!-- Interactive Formative Test -->
+            <div class="quiz-container" id="quiz-section">
+                <div class="quiz-header">
+                    <h2>📝 Uji Formatif Pertemuan 4</h2>
+                    <p style="color: var(--text-secondary);">Tata Tertib di Madrasah | Skor Maksimal: 200</p>
+                </div>
+
+                <form id="formatifForm">
+                    <!-- Identitas -->
+                    <div class="content-section" style="margin-bottom: 2rem; border-color: var(--gold);">
+                        <h3 style="color: var(--gold); margin-bottom: 1.5rem; font-family: 'Inter', sans-serif; font-size: 1.1rem;">📋 Identitas Siswa</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Lengkap *</label>
+                                <input type="text" id="nama" class="form-control" required placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div class="form-group">
+                                <label>No. Absen / NIS *</label>
+                                <input type="text" id="nis" class="form-control" required placeholder="Contoh: 05 / 12345">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tanggal Ujian *</label>
+                                <input type="date" id="tanggal" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Kelas *</label>
+                                <select id="kelas" class="form-control" required>
+                                    <option value="">Pilih Kelas</option>
+                                    <option value="VII-A">VII-A</option>
+                                    <option value="VII-B">VII-B</option>
+                                    <option value="VII-C">VII-C</option>
+                                    <option value="VII-D">VII-D</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bagian A: Pilihan Ganda -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">📋 Bagian A: Pilihan Ganda (10 Soal x 10 Poin)</h3>
+                    
+                    <div class="question-block">
+                        <p class="question-text">1. Apa definisi yang paling tepat untuk tata tertib madrasah? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q1" value="A"> A. Daftar larangan yang membatasi kebebasan siswa</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="B"> B. Seperangkat aturan tertulis yang mengatur perilaku warga madrasah untuk menciptakan lingkungan yang tertib dan berkarakter</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="C"> C. Alat untuk menghukum siswa yang nakal</label></li>
+                            <li><label class="option-label"><input type="radio" name="q1" value="D"> D. Kumpulan tugas yang diberikan oleh guru</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Menurut Teori Disiplin Demokratis Dreikurs, pendekatan disiplin yang paling efektif adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q2" value="A"> A. Hukuman fisik agar siswa jera</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="B"> B. Konsekuensi logis dan natural dari setiap tindakan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="C"> C. Membiarkan siswa berbuat semaunya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q2" value="D"> D. Memberikan hadiah untuk setiap perilaku baik</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Menurut Kohlberg, siswa SMP umumnya berada pada tahap perkembangan moral... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q3" value="A"> A. Pra-Konvensional</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="B"> B. Konvensional</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="C"> C. Post-Konvensional</label></li>
+                            <li><label class="option-label"><input type="radio" name="q3" value="D"> D. Universal-Ethical</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Manakah yang termasuk tata tertib akademik? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q4" value="A"> A. Mengenakan seragam dengan rapi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="B"> B. Mengerjakan tugas dan PR tepat waktu</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="C"> C. Membuang sampah pada tempatnya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q4" value="D"> D. Hadir sebelum bel masuk berbunyi</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Siswa yang mematuhi tata tertib karena kesadaran moral internal (bukan karena takut dihukum) berada pada tahap perkembangan moral... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q5" value="A"> A. Pra-Konvensional</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="B"> B. Konvensional</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="C"> C. Post-Konvensional</label></li>
+                            <li><label class="option-label"><input type="radio" name="q5" value="D"> D. Otoriter</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">6. Manakah yang BUKAN merupakan tujuan tata tertib madrasah? <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q6" value="A"> A. Menciptakan ketertiban</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="B"> B. Membentuk karakter</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="C"> C. Menambah beban siswa</label></li>
+                            <li><label class="option-label"><input type="radio" name="q6" value="D"> D. Menjamin keadilan</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">7. Jika seorang siswa terlambat tiga kali berturut-turut, bentuk pembinaan yang paling tepat adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q7" value="A"> A. Langsung dikeluarkan dari madrasah</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="B"> B. Dipanggil oleh Guru BK untuk konseling dan mencari akar masalah</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="C"> C. Dihukum berdiri di depan kelas</label></li>
+                            <li><label class="option-label"><input type="radio" name="q7" value="D"> D. Diabaikan saja</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">8. Menurut Teori Locus of Control Rotter, siswa dengan "internal locus of control" adalah siswa yang... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q8" value="A"> A. Percaya bahwa keberhasilan ditentukan oleh keberuntungan</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="B"> B. Percaya bahwa keberhasilan dan kegagalan ditentukan oleh usaha sendiri</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="C"> C. Menyalahkan orang lain atas kegagalannya</label></li>
+                            <li><label class="option-label"><input type="radio" name="q8" value="D"> D. Pasrah pada keadaan tanpa berusaha</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">9. Peran Guru BK dalam penegakan tata tertib yang paling tepat adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q9" value="A"> A. Sebagai polisi sekolah yang mengawasi setiap gerak siswa</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="B"> B. Sebagai mitra pembinaan yang membantu siswa memahami dan menginternalisasi tata tertib</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="C"> C. Sebagai hakim yang menjatuhkan hukuman</label></li>
+                            <li><label class="option-label"><input type="radio" name="q9" value="D"> D. Sebagai penonton yang tidak terlibat</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">10. Pelajaran utama dari kisah Ahmad dalam studi kasus adalah... <span class="question-points">10 POIN</span></p>
+                        <ul class="options-list">
+                            <li><label class="option-label"><input type="radio" name="q10" value="A"> A. Tata tertib harus ditegakkan dengan keras tanpa kompromi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="B"> B. Tata tertib ditegakkan dengan tegas, tetapi juga dengan empati dan solusi</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="C"> C. Siswa yang terlambat selalu memiliki alasan yang bisa diterima</label></li>
+                            <li><label class="option-label"><input type="radio" name="q10" value="D"> D. Guru BK tidak perlu terlibat dalam masalah keterlambatan</label></li>
+                        </ul>
+                    </div>
+
+                    <!-- Bagian B: Essay -->
+                    <h3 style="color: var(--gold-light); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-gold); padding-bottom: 0.5rem;">✍️ Bagian B: Essay (5 Soal x 20 Poin)</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">*Sistem akan melakukan estimasi skor berdasarkan kata kunci jawaban. Penilaian akhir tetap berada di tangan Guru.</p>
+
+                    <div class="question-block">
+                        <p class="question-text">1. Jelaskan apa yang dimaksud dengan tata tertib madrasah dan mengapa tata tertib itu penting! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay1" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">2. Sebutkan dan jelaskan 3 dari 5 jenis tata tertib di madrasah beserta contohnya! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay2" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">3. Jelaskan perbedaan antara tahap perkembangan moral Konvensional dan Post-Konvensional menurut Kohlberg! Mengapa penting bagi siswa untuk mencapai tahap Post-Konvensional? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay3" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">4. Apa yang dimaksud dengan "pembinaan" dalam konteks pelanggaran tata tertib? Jelaskan tingkatan pembinaan untuk pelanggaran ringan, sedang, dan berat! <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay4" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div class="question-block">
+                        <p class="question-text">5. Sebutkan 3 strategi untuk menginternalisasi tata tertib madrasah! Mengapa internalisasi lebih penting daripada sekadar kepatuhan karena takut dihukum? <span class="question-points">20 POIN</span></p>
+                        <textarea id="essay5" class="form-control" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="button" class="btn btn-primary" onclick="calculateScore()">📊 KIRIM JAWABAN & LIHAT HASIL</button>
+                    </div>
+                </form>
+
+                <!-- Results Panel -->
+                <div id="resultsPanel" class="results-panel">
+                    <h3 style="color: var(--success); margin-bottom: 1rem;">✅ Uji Formatif Selesai!</h3>
+                    <p style="color: var(--text-secondary);">Berikut adalah ringkasan hasil penilaian Anda:</p>
+                    
+                    <div class="score-grid">
+                        <div class="score-box">
+                            <h4>Pilihan Ganda</h4>
+                            <div class="value" id="scorePG">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Essay (Estimasi)</h4>
+                            <div class="value" id="scoreEssay">0</div>
+                        </div>
+                        <div class="score-box">
+                            <h4>Skor Akhir</h4>
+                            <div class="value" id="scoreTotal">0</div>
+                        </div>
+                    </div>
+
+                    <div id="essayFeedback" style="text-align: left; background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border-gold);">
+                        <h4 style="color: var(--gold); margin-bottom: 1rem;">💡 Catatan Penilaian Essay:</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Skor essay di atas adalah <strong>estimasi otomatis</strong> berdasarkan deteksi kata kunci dan panjang jawaban. Guru akan melakukan verifikasi ulang terhadap substansi jawaban Anda untuk mendapatkan nilai resmi.</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="downloadPDF()">📄 Unduh PDF Lengkap</button>
+                        <button class="btn btn-secondary" onclick="downloadTXT()">📥 Unduh Skor (TXT)</button>
+                        <button class="btn btn-outline" onclick="sendEmail()">📧 Kirim ke Email Guru</button>
+                        <button class="btn btn-secondary" onclick="resetForm()">🔄 Mulai Ulang</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p class="luxury-font" style="font-size: 1.2rem; color: var(--gold); margin-bottom: 1rem;">MTsN 10 Agam</p>
+            <p>&copy; 2026 Tika Ramadhani S.Pd. Hak Cipta Dilindungi Undang-Undang.</p>
+            <p style="margin-top: 0.5rem;">Email: <a href="mailto:tikaramadhani41@gmail.com">tikaramadhani41@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const correctAnswers = {
+            q1: 'B', q2: 'B', q3: 'B', q4: 'B', q5: 'C',
+            q6: 'C', q7: 'B', q8: 'B', q9: 'B', q10: 'B'
+        };
+
+        // Kata kunci untuk estimasi penilaian essay
+        const essayKeywords = {
+            essay1: ['tata tertib', 'aturan', 'tertib', 'karakter', 'penting', 'lingkungan'],
+            essay2: ['akademik', 'kehadiran', 'berpakaian', 'perilaku', 'kebersihan', 'contoh'],
+            essay3: ['konvensional', 'post-konvensional', 'kohlberg', 'moral', 'sadar', 'takut'],
+            essay4: ['pembinaan', 'ringan', 'sedang', 'berat', 'teguran', 'skorsing'],
+            essay5: ['internalisasi', 'paham', 'komitmen', 'kebiasaan', 'evaluasi', 'sadar']
+        };
+
+        let finalScores = { pg: 0, essay: 0, total: 0 };
+
+        function calculateScore() {
+            // Validasi form
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            if (!nama || !nis) {
+                alert('Harap lengkapi Identitas Siswa (Nama dan NIS) terlebih dahulu!');
+                return;
+            }
+
+            // Hitung PG
+            let pgScore = 0;
+            for (let i = 1; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === correctAnswers[`q${i}`]) {
+                    pgScore += 10;
+                }
+            }
+
+            // Hitung Estimasi Essay
+            let essayScore = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                const answer = document.getElementById(`essay${i}`).value.toLowerCase();
+                const keywords = essayKeywords[`essay${i}`];
+                let matchCount = 0;
+                
+                keywords.forEach(keyword => {
+                    if (answer.includes(keyword)) matchCount++;
+                });
+
+                if (answer.length > 15) {
+                    if (matchCount >= 2) essayScore += 20;
+                    else if (matchCount >= 1) essayScore += 10;
+                    else essayScore += 5;
+                }
+            }
+
+            finalScores = {
+                pg: pgScore,
+                essay: essayScore,
+                total: pgScore + essayScore
+            };
+
+            // Tampilkan hasil
+            document.getElementById('scorePG').textContent = finalScores.pg;
+            document.getElementById('scoreEssay').textContent = finalScores.essay;
+            document.getElementById('scoreTotal').textContent = finalScores.total;
+            
+            document.getElementById('resultsPanel').classList.add('show');
+            document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('quiz-section');
+            const nama = document.getElementById('nama').value || 'Siswa';
+            const opt = {
+                margin: 10,
+                filename: `Uji_Formatif_P4_${nama.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, backgroundColor: '#0a0e17' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function downloadTXT() {
+            const nama = document.getElementById('nama').value;
+            const nis = document.getElementById('nis').value;
+            const kelas = document.getElementById('kelas').value;
+            const tanggal = document.getElementById('tanggal').value;
+            
+            const content = `=== HASIL UJI FORMATIF BK ===\n` +
+                           `Pertemuan 4: Tata Tertib di Madrasah\n` +
+                           `MTsN 10 Agam | Tahun Pelajaran 2026/2027\n\n` +
+                           `Nama: ${nama}\n` +
+                           `NIS: ${nis}\n` +
+                           `Kelas: ${kelas}\n` +
+                           `Tanggal: ${tanggal}\n\n` +
+                           `--- SKOR ---\n` +
+                           `Pilihan Ganda: ${finalScores.pg} / 100\n` +
+                           `Essay (Estimasi): ${finalScores.essay} / 100\n` +
+                           `TOTAL SKOR: ${finalScores.total} / 200\n\n` +
+                           `Catatan: Skor essay adalah estimasi otomatis. Verifikasi guru diperlukan.\n` +
+                           `Dikirim ke: tikaramadhani41@gmail.com`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Skor_BK_P4_${nama.replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function sendEmail() {
+            const nama = document.getElementById('nama').value;
+            const kelas = document.getElementById('kelas').value;
+            const total = finalScores.total;
+            
+            const subject = encodeURIComponent(`Hasil Uji Formatif BK Pertemuan 4 - ${nama} (${kelas})`);
+            const body = encodeURIComponent(`Yth. Ibu Tika Ramadhani S.Pd,\n\nBerikut adalah hasil uji formatif saya:\n\nNama: ${nama}\nKelas: ${kelas}\nSkor Total: ${total}/200\n(PG: ${finalScores.pg}, Essay: ${finalScores.essay})\n\nTerima kasih.\n\n*File detail telah diunduh secara terpisah.*`);
+            
+            window.location.href = `mailto:tikaramadhani41@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        function resetForm() {
+            if (confirm('Apakah Anda yakin ingin mengosongkan semua jawaban dan mulai ulang?')) {
+                document.getElementById('formatifForm').reset();
+                document.getElementById('resultsPanel').classList.remove('show');
+                finalScores = { pg: 0, essay: 0, total: 0 };
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.getElementById('tanggal').valueAsDate = new Date();
+    </script>
+</body>
+</html>
